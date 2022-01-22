@@ -1,0 +1,45 @@
+<div class="modal-footer">
+  <div class="food-step-count-bar">
+    <article class="container">
+      <figure class="row">
+        <div class="col-12 inner-wrap">
+          <div class="step-btn-group">
+            <a class="button button-primary count-btn"
+              (click)="onClickClose()"
+              *ngIf="box.boxItems !== box.boxLimit; else completedBox"><i
+                class="fas fa-box" aria-hidden="true"></i>
+              <span>{{ box.boxItems
+                }}</span>/{{ box.boxLimit }}</a>
+            <ng-template #completedBox>
+              <a class="button button-primary count-btn completed"
+                (click)="onClickClose()"><i class="fas fa-box"></i>
+                <span>{{ box.boxItems
+                  }}</span>
+                /{{ box.boxLimit }}
+              </a>
+            </ng-template>
+            <a class="button button-primary button-icon disabled"
+              *ngIf="box.boxItems !== box.boxLimit; else addToCart">Box
+              {{
+              box.boxNo }} is not full</a>
+            <ng-template #addToCart>
+              <a (click)="onClickAddToCart()"
+                class="button button-primary button-icon">Add
+                to cart ({{ boxTotalPrice | currency }})</a>
+            </ng-template>
+          </div>
+        </div>
+        <div class="col-12 inner-wrap"
+          *ngIf="discount?.discountPercent">
+          <p class="preload-text text-center">🚨 Save up to <span
+              class="orng">{{
+              discount?.discountPercent }}% Off</span> by adding
+            {{
+            discountedItems }} more
+            items
+          </p>
+        </div>
+      </figure>
+    </article>
+  </div>
+</div>

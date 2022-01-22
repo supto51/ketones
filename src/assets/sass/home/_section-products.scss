@@ -1,0 +1,92 @@
+.sk-main {
+  &__products {
+    margin-top: 65px;
+    padding-bottom: 56px;
+
+    @include respond(phone) {
+      padding-bottom: 40px;
+      margin-top: 21px;
+    }
+  }
+
+  &__product {
+    border-radius: 20px;
+    margin-bottom: 30px;
+    padding: 30px 20px 48px 20px;
+
+    @include respond(tab_port) {
+      padding: 30px 10px 33px 10px;
+    }
+
+    @include respond(phone) {
+      border-radius: 10px;
+      margin-bottom: 10px;
+      padding: 10px 5px 16px 5px;
+    }
+  }
+
+  &__product-img {
+    height: 158px;
+    width: 179px;
+    margin: 0 auto 10px;
+
+    @include respond(phone) {
+      width: 87.2px;
+      height: 81px;
+    }
+
+    img {
+      max-height: -webkit-fill-available;
+      max-height: 100%;
+    }
+  }
+
+  &__product-btn {
+    margin-top: 5px;
+  }
+
+  &__product-details {
+    height: 75px;
+
+    @include respond(phone) {
+      height: 55px;
+    }
+  }
+
+  &__product-from {
+    @include respond(phone) {
+      font-size: $font-12;
+    }
+  }
+
+  &__product-title {
+    line-height: $line-height-21;
+    height: auto;
+    max-width: 259px;
+    margin: 0 auto;
+
+    margin-bottom: 3px;
+
+    @include respond(phone) {
+      line-height: $line-height-15;
+      height: 28px;
+      margin-bottom: 0;
+    }
+
+    @include respond(phone_small) {
+      font-size: 13px;
+    }
+  }
+
+  &__custom-pad-l {
+    @include respond(phone) {
+      padding-right: 5px;
+    }
+  }
+
+  &__custom-pad-r {
+    @include respond(phone) {
+      padding-left: 5px;
+    }
+  }
+}

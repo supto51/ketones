@@ -1,0 +1,18 @@
+<section class="sk-category">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h3 class="color-black">{{ 'categories' | translate }}</h3>
+
+        <ul class="sk-category__list d-flex">
+          <li class="sk-category__list-item"
+            *ngFor="let category of categories">
+            <a (click)="onClickCategory(category.slug)"
+              class="color-black border-0 sk-category__link sk-category__btn"
+              [innerHTML]="category.name"></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

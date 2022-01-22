@@ -1,0 +1,60 @@
+<div class="sk-main__product text-center color-light-white-bg">
+  <figure class="sk-main__product-img">
+    <img src="{{ product.post_home_thumb_url }}"
+      srcset="{{ product.post_home_thumb_url }} 1x, {{ product.post_home_retina_thumb_url }} 2x"
+      class="img-fluid pointer" alt="Product-1"
+      [class.product-sold-out]="isSoldOut(product)"
+      (click)="onClickProductImage(product.post_name)" />
+  </figure>
+
+  <div class="sk-main__product-details">
+    <h4 class="color-black sk-main__product-title"
+      [innerHTML]="product.post_title"></h4>
+    <ng-template #nonChinesePrice>
+      <p class="p-small color-gray sk-main__product-from">
+        {{ "from" | translate }}
+        <del class="font-reg" *ngIf="
+            getProductDiscountPrice(product.mvp_variations) !== 0 && !isBothPricesSame()
+          ">{{ currencySymbol
+          }}{{
+          getProductOriginalPrice(product.mvp_variations)
+          }}</del>
+        <wbr />
+        <span [ngClass]="{
+            'color-green font-bold ml-1':
+              getProductDiscountPrice(product.mvp_variations) !== 0 && !isBothPricesSame()
+          }">{{ currencySymbol
+          }}{{ getProductPrice(product.mvp_variations) }}</span>
+      </p>
+    </ng-template>
+    <p class="p-small color-gray sk-main__product-from" *ngIf="
+        selectedLanguage === 'zh-hans' ||
+          selectedLanguage === 'zh-hant';
+        else nonChinesePrice
+      ">
+      <del class="font-reg" *ngIf="
+          getProductDiscountPrice(product.mvp_variations) !== 0 && !isBothPricesSame()
+        ">{{ currencySymbol
+        }}{{ getProductOriginalPrice(product.mvp_variations) }}</del>
+      <wbr />
+      <span [ngClass]="{
+          'color-green font-bold ml-1':
+            getProductDiscountPrice(product.mvp_variations) !== 0 && !isBothPricesSame()
+        }">{{ currencySymbol
+        }}{{ getProductPrice(product.mvp_variations) }}</span>
+      {{ "from" | translate }}
+    </p>
+  </div>
+
+  <div class="sk-main__product-btn">
+    <button class="button button-primary buy-now" data-toggle="modal"
+      data-target="#exampleModalCenter"
+      (click)="onClickBuyNow(product.post_name)"
+      *ngIf="!isSoldOut(product)">
+      {{ "buy-now" | translate }}
+    </button>
+    <div class="sold-out" *ngIf="isSoldOut(product)">
+      <h4>{{ getSoldOutText(product) }}</h4>
+    </div>
+  </div>
+</div>

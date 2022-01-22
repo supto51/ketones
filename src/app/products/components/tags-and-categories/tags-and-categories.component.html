@@ -1,0 +1,103 @@
+<main class="sk-main"
+  *ngIf="tagsOrCategoriesProducts.length > 0; else notFound"
+  [style.margin-top.px]="discountHeight">
+  <section class="sk-product__banner category-title-wrap">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 product-breadcrumbs">
+          <ul class="p-small">
+            <li>
+              <a class="color-gray" (click)="onClickHome()"><i
+                  class="fas fa-home-lg-alt"
+                  style="font-size: 12px"></i></a>
+            </li>
+            <ng-container
+              *ngIf="!isShopAllPresent(tagOrCategorySlug)">
+              <span class="breadcrumb-greater-than">&#8250;</span>
+              <li>
+                <a class="color-gray" (click)="onClickShopAll()">{{
+                  "shop-all" | translate
+                  }}</a>
+              </li>
+            </ng-container>
+            <ng-container
+              *ngIf="!isParentCategory && (parentCategory | json) !== '{}'">
+              <span class="breadcrumb-greater-than">&#8250;</span>
+              <li>
+                <a class="color-gray"
+                  (click)="onClickCategory(parentCategory.slug)"
+                  [innerHTML]="parentCategory.name"></a>
+              </li>
+            </ng-container>
+            <span class="breadcrumb-greater-than">&#8250;</span>
+            <li>
+              <span class="color-gray"
+                [innerHTML]="tagOrCategoryName"></span>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md">
+          <figure class="sk-category__parent-title-wrap text-center">
+            <h1 class="color-black sk-category__parent-title"
+              [innerHTML]="tagOrCategoryName"></h1>
+            <p *ngIf="tagOrCategoryDescription !== ''"
+              class="color-gray sk-category__parent-subtitle"
+              [innerHTML]="tagOrCategoryDescription"></p>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sk-category__parent-products ext-mrg">
+    <div class="container">
+      <div class="row">
+        <div class="sort-by-dropdown">
+          <select class="form-select" aria-label="example"
+            (change)="onChangeSort($event)" [(ngModel)]="sortOrder">
+            <option value="price">{{ "sort-by-price" | translate }}
+            </option>
+            <option value="alphabetic">{{ "sort-by-a-z" | translate }}
+            </option>
+          </select>
+
+          <svg viewBox="0 0 10 8" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M0.62515 0.365234H8.66578C9.22202 0.365234 9.50015 1.03711 9.1064 1.43086L5.08765 5.45273C4.8439 5.69648 4.44703 5.69648 4.20328 5.45273L0.184525 1.43086C-0.209225 1.03711 0.0689002 0.365234 0.62515 0.365234Z"
+              fill="#2152FF"></path>
+          </svg>
+        </div>
+
+        <ng-container *ngFor="
+            let product of tagsOrCategoriesProducts | sort: sortOrder;
+            let i = index
+          ">
+          <div class="col-md-4 col-6" [ngClass]="{
+              'sk-main__custom-pad-l': (i + 1) % 2 !== 0,
+              'sk-main__custom-pad-r': (i + 1) % 2 === 0
+            }">
+            <app-product-card [product]="product">
+            </app-product-card>
+          </div>
+        </ng-container>
+        <ng-container *ngFor="
+            let product of outOfStockProducts | sort: sortOrder;
+            let i = index
+          ">
+          <div class="col-md-4 col-6" [ngClass]="{
+              'sk-main__custom-pad-l': (i + 1) % 2 !== 0,
+              'sk-main__custom-pad-r': (i + 1) % 2 === 0
+            }">
+            <app-product-card [product]="product">
+            </app-product-card>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </section>
+</main>
+
+<ng-template #notFound>
+  <app-error404></app-error404>
+</ng-template>

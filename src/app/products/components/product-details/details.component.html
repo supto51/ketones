@@ -1,0 +1,10 @@
+<main class="sk-product"
+  *ngIf="(product | json) !== '{}'; else notFound"
+  [style.margin-top.px]="discountHeight">
+  <app-form></app-form>
+  <app-info></app-info>
+</main>
+
+<ng-template #notFound>
+  <app-error404></app-error404>
+</ng-template>

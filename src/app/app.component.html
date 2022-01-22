@@ -1,0 +1,72 @@
+<template #modalcontainer> </template>
+
+<div class="drawer-nav"
+  [class.bottom-up]="sidebarName === 'food-summary'">
+  <div>
+    <app-country-bar *ngIf="sidebarName === 'country-bar'">
+    </app-country-bar>
+
+    <app-add-to-cart *ngIf="sidebarName === 'add-to-cart'">
+    </app-add-to-cart>
+
+    <app-checkout-cart *ngIf="sidebarName === 'checkout-cart'">
+    </app-checkout-cart>
+
+    <app-delivery-options *ngIf="sidebarName === 'delivery-options'">
+    </app-delivery-options>
+
+    <app-food-filter *ngIf="sidebarName === 'food-filter'">
+    </app-food-filter>
+
+    <app-food-summary *ngIf="sidebarName === 'food-summary'">
+    </app-food-summary>
+
+    <div *ngIf="sidebarName  === ''"></div>
+  </div>
+  <div *ngIf="sidebarName === 'food-summary'">
+    <app-food-box-sidebar></app-food-box-sidebar>
+  </div>
+  <div *ngIf="sidebarName === 'food-filter'">
+    <app-food-reset-sidebar></app-food-reset-sidebar>
+  </div>
+</div>
+
+<app-header (messageEvent)="receiveMessage($event)"></app-header>
+<router-outlet (activate)="onActivate()"
+  *ngIf="isLoaded; else loader"></router-outlet>
+<app-footer></app-footer>
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>
+
+<div class="navbar-overlay"></div>
+
+<div *ngIf="fbPageID !== '' && isCookiePresent === 0"
+  class="fb-customerchat" [attr.page_id]="fbPageID"></div>
+
+<section class="privacy-cookies-notice-wrap"
+  [class.show-cookies]="isCookiePresent === 1">
+  <p class="p-small color-white">
+    🍪 {{ "cookies-text" | translate }}
+    <a class="underline" href="{{ generalSettings?.privacy }}">{{
+      "privacy-policy" | translate
+      }}</a><a class="btn btn-primary" (click)="onClickAccept()">{{
+      "accept" | translate }}
+      {{ "and-sign" | translate }}
+      {{ "close" | translate }}</a>
+  </p>
+</section>
+
+<div class="miniplayer-wrap" [class.msg-popup]="fbPageID !== ''"
+  *ngIf="referrerVideoId !== '' && isCookiePresent === 0">
+  <span
+    class="wistia_embed wistia_async_{{
+      referrerVideoId
+    }} popover=false popoverAnimateThumbnail=true videoFoam=true controlsVisibleOnLoad=false">&nbsp;</span>
+
+  <button type="button" class="close position-absolute"
+    (click)="onClickCloseVideo()">
+    <i class="fas fa-times-circle"></i>
+  </button>
+</div>

@@ -1,0 +1,218 @@
+<main [style.margin-top.px]="discountHeight"
+  *ngIf="selectedCountry !== 'GB'; else notFound">
+  <section class="promoter-wrapper">
+    <section class="promoter-banner text-center">
+      <article class="container">
+        <figure class="row">
+          <div class="col-sm-12">
+            <h1 class="jumbo-text-big title">
+              {{ "become-a-promoter" | translate }}
+            </h1>
+            <p class="subtitle">
+              {{ "join-the-pursuit-of-better" | translate }}
+            </p>
+          </div>
+
+          <div class="col-sm-12 col-md-6"
+            *ngFor="let promoter of promoters">
+            <div class="pr-card"
+              [class.max]="!isPromoterMini(promoter)">
+              <div class="pr-img">
+                <img
+                  [src]="isPromoterMini(promoter) ? 'assets/images/MINI_m1.png' : 'assets/images/MAX_m1.png' "
+                  alt="img" class="img-fluid">
+              </div>
+              <p>{{ "brand-builder" | translate }}</p>
+              <h1 class="jumbo-text-big">
+                {{ (isPromoterMini(promoter) ? "mini" : "max") |
+                translate }}
+              </h1>
+              <span class="membership">
+                {{ "from" | translate }} {{ currencySymbol
+                }}{{ getPromoterStartingPrice(promoter) }} + {{
+                currencySymbol
+                }}{{ getPromoterFee() }} {{ "annual-membership" |
+                translate }}
+              </span>
+              <p class="popular" *ngIf="isMostPopular(promoter)">
+                {{ "most-popular" | translate }}
+              </p>
+              <div class="inner">
+                <ul class="pr-list"
+                  *ngIf="promoter?.mvproduct_banner_description !== ''">
+                  <li class="list-item" *ngFor="
+                    let benefit of getPromoterBenefits(
+                      promoter?.mvproduct_banner_description
+                    );
+                    let i = index
+                  ">
+                    <strong *ngIf="i === 0"> {{ benefit }} </strong>
+                    <ng-container *ngIf="i !== 0"> {{ benefit }}
+                    </ng-container>
+                    <a *ngIf="i === 0 && promoter?.mvproduct_short_note !== ''"
+                      class="large-tooltip" data-toggle="tooltip"
+                      [attr.data-placement]="getTooltipPlacement()"
+                      data-html="true"
+                      data-template="<div class='tooltip' role='tooltip'><div class='arrow'></div><div class='promoter-pack tooltip-inner'></div></div>"
+                      [title]="promoter?.mvproduct_short_note">
+                      <i class="fad fa-info-circle"></i>
+                    </a>
+                  </li>
+                </ul>
+                <a (click)="onClickPromoter(promoter?.post_name)"
+                  class="button button-primary buy-now">
+                  {{
+                  (isPromoterMini(promoter)
+                  ? "lets-get-started"
+                  : "im-ready-to-go"
+                  ) | translate
+                  }}
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <a (click)="onClickPromoterFee()"
+            class="pr-addcart pointer">
+            {{ "add-promoter-membership-fee-to-cart" | translate }}
+          </a>
+        </figure>
+      </article>
+    </section>
+    <!-- END of promoter-banner -->
+
+    <section class="promoter-pack text-center">
+      <article class="container">
+        <figure class="row">
+          <div class="col-sm-12 col-md-4 pr-pack" appLottiePlayer>
+            <lottie-player src="/assets/animation/choose_path.json"
+              background="transparent" speed="1" count="1" autoplay>
+            </lottie-player>
+
+            <h3 class="title">{{ "choose-path" | translate }}</h3>
+            <p class="subtitle">
+              {{ "start-small-with-mini" | translate }}
+            </p>
+          </div>
+
+          <div class="col-sm-12 col-md-4 pr-pack" appLottiePlayer>
+            <lottie-player src="/assets/animation/select_pack.json"
+              background="transparent" speed="1" count="1" autoplay>
+            </lottie-player>
+            <h3 class="title">{{ "select-pack" | translate }}</h3>
+            <p class="subtitle">
+              {{ "charged-caffeine-free-or-digital-trial-credits" |
+              translate }}
+            </p>
+          </div>
+
+          <div class="col-sm-12 col-md-4 pr-pack" appLottiePlayer>
+            <lottie-player src="/assets/animation/save_22.json"
+              background="transparent" speed="1" count="1" autoplay>
+            </lottie-player>
+            <h3 class="title">{{ "save" | translate }} 22%</h3>
+            <p class="subtitle">
+              {{ "setup-a-monthly-smartship-order" | translate }}
+            </p>
+          </div>
+        </figure>
+      </article>
+    </section>
+    <!-- END of promoter-pack -->
+
+    <section class="promoter-builder text-center">
+      <article class="container">
+        <figure class="row">
+          <div class="col-sm-12">
+            <h3 class="subtitle">{{ "brand-builder" | translate }}
+            </h3>
+            <h1 class="title">{{ "max" | translate }}</h1>
+            <p class="description">
+              {{ "maximize-your-first-year" | translate }}
+            </p>
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-lg-4">
+            <div class="builder-card">
+              <h1 class="title">x2</h1>
+              <h3 class="subtitle">{{ "double-go-fast" | translate }}
+              </h3>
+              <p class="description">
+                {{ "eg-earn" | translate }} $204
+                {{ "for-every-personal-brand-builder-max-pack" |
+                translate }}
+              </p>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-lg-4">
+            <div class="builder-card">
+              <h1 class="title">1 {{ "yr" | translate }}</h1>
+              <h3 class="subtitle">{{ "rank-5-pass" | translate }}
+              </h3>
+              <p class="description">
+                {{ "earn-like-a-paid-rank-5" | translate }}
+              </p>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-lg-4">
+            <div class="builder-card">
+              <h1 class="title">$2k</h1>
+              <h3 class="subtitle">{{ "double-all-star" | translate }}
+              </h3>
+              <p class="description">
+                {{ "hit-all-star-in-120-days" | translate }} $1000
+                {{ "on-top-of-the-regular" | translate }} $1000.
+              </p>
+            </div>
+          </div>
+        </figure>
+      </article>
+    </section>
+    <!-- END of promoter-builder -->
+
+    <section class="promoter-exclusive text-center">
+      <article class="container">
+        <figure class="row">
+          <div class="col-sm-12 exclusive-heading">
+            <h2>{{ "exclusive-perks" | translate }}</h2>
+            <p>{{ "all-brand-builder-packs-have-access-to" | translate
+              }}</p>
+          </div>
+
+          <div class="col-sm-12 col-md-6">
+            <div class="exclusive-card bg-gradient">
+              <h2 class="title">{{ "22-percent-off" | translate }}
+              </h2>
+              <p class="subtitle">
+                {{ "setup-a-smartship-and-get-22-percent-off" |
+                translate }}
+              </p>
+              <img src="assets/images/products.png" alt="Products"
+                class="img-fluid img" />
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-6">
+            <div class="exclusive-card bg-dark">
+              <h2 class="title">{{ "digital-trials" | translate }}
+              </h2>
+              <p class="subtitle">
+                {{ "purchase-trial-credits-to-ship-3-day-trials" |
+                translate }}
+              </p>
+              <img src="assets/images/pulse-pro-trial.png"
+                alt="Products" class="img-fluid img" />
+            </div>
+          </div>
+        </figure>
+      </article>
+    </section>
+    <!-- END of promoter-exclusive -->
+  </section>
+</main>
+
+<ng-template #notFound>
+  <app-error404></app-error404>
+</ng-template>

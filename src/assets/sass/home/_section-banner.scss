@@ -1,0 +1,249 @@
+.sk-main {
+  &__top {
+    margin-top: 63px;
+    overflow: hidden;
+
+    @include respond(phone) {
+      padding: 0 18px;
+      margin-top: 30px;
+    }
+  }
+
+  &__slider-container {
+    max-width: 1210px;
+  }
+
+  &__title {
+    margin-bottom: 40px;
+
+    @include respond(phone) {
+      margin-bottom: 30px;
+    }
+
+    &-b {
+      margin-top: 10px;
+
+      @include respond(phone) {
+        margin-top: 5px;
+      }
+    }
+  }
+
+  &__banner {
+    padding: 43px 135px 15px;
+    border-radius: 20px;
+    margin: 0 20px;
+    opacity: 0.25;
+
+    &.slick-current {
+      opacity: 1;
+    }
+
+    @include respond(tab_land) {
+      margin: 0 30px;
+      padding-left: 85px;
+      padding-right: 85px;
+      margin: 0 10px;
+    }
+
+    @include respond(tab_port) {
+      padding: 50px 50px 20px;
+    }
+
+    @include respond(phone) {
+      padding: 27px 30px 20px;
+      text-align: center;
+      margin: 0 10px;
+    }
+
+    @include respond(phone_small) {
+      margin: 0 5px;
+    }
+  }
+
+  &__banner-slider {
+    .slick-list {
+      overflow: visible;
+    }
+
+    .slick-arrow {
+      width: 48px;
+      height: 48px;
+      background-color: $color-white;
+      -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 50%;
+      z-index: 10;
+      -webkit-transition: all 0.2s;
+      -o-transition: all 0.2s;
+      transition: all 0.2s;
+      top: 50%;
+
+      &:hover {
+        -webkit-box-shadow: 0px 0.5px 2px rgba(32, 38, 62, 0.25);
+        box-shadow: 0px 0.5px 2px rgba(32, 38, 62, 0.25);
+      }
+
+      @include respond(phone) {
+        width: 34px;
+        height: 34px;
+      }
+    }
+
+    .slick-prev {
+      left: -10px;
+
+      @include respond(tab_land) {
+        left: 5px;
+      }
+
+      @include respond(phone) {
+        left: 0;
+      }
+
+      @include respond(phone_small) {
+        left: -15px;
+      }
+    }
+
+    .slick-next {
+      right: -5px;
+
+      @include respond(tab_land) {
+        right: 5px;
+      }
+
+      @include respond(phone) {
+        right: 0;
+      }
+
+      @include respond(phone_small) {
+        right: -15px;
+      }
+    }
+
+    .slick-disabled {
+      display: none !important;
+    }
+
+    .slick-prev:before,
+    .slick-next:before {
+      font-family: $FontAwesome;
+      color: $color-brand;
+      opacity: 1;
+      font-size: $font-22;
+
+      &:hover {
+        color: $btn-hover-color;
+      }
+
+      @include respond(phone) {
+        font-size: $btn-default-fontsize;
+      }
+    }
+
+    .slick-prev:before {
+      content: "\f053";
+      margin-right: 2px;
+    }
+
+    .slick-next:before {
+      content: "\f054";
+      margin-left: 2px;
+    }
+
+    .slick-dots {
+      bottom: -37px;
+
+      li {
+        margin: 0 -2px;
+        button:before {
+          font-size: $font-22;
+          color: $color-gray;
+          opacity: 1;
+        }
+
+        &.slick-active button:before {
+          color: $color-black;
+        }
+      }
+    }
+  }
+
+  &__custom-col-m {
+    @include respond(phone) {
+      padding: 0;
+    }
+  }
+
+  &__right {
+    margin-right: -60px;
+
+    @include respond(phone) {
+      margin-right: 0;
+    }
+  }
+
+  &__left {
+    margin-top: 20px;
+    padding-bottom: 50px;
+
+    @include respond(tab_port) {
+      margin-top: 0;
+      padding-bottom: 23px;
+    }
+  }
+
+  &__subtitle-m {
+    @include respond(phone) {
+      font-size: $font-mid-small-m;
+      line-height: $line-height-31;
+    }
+  }
+
+  &__how-it-work {
+    margin-top: 33px;
+    @include respond(phone) {
+      margin-top: 10px;
+    }
+    .a-link {
+      @include respond(phone) {
+        font-size: $default-fontsize-m;
+        line-height: $line-height-24;
+      }
+    }
+  }
+
+  &__banner-btn {
+    margin-top: 50px;
+
+    @include respond(phone) {
+      margin-top: 18px;
+    }
+  }
+
+  &__banner-custom-btn {
+    @include respond(phone) {
+      padding: 13.2px;
+    }
+  }
+
+  &__banner-img {
+    width: 422.06px;
+    margin-left: 64px;
+
+    @include respond(tab_port) {
+      margin-left: 0;
+    }
+
+    @include respond(phone) {
+      @include customWidth(211px);
+    }
+  }
+
+  &__right {
+    @include respond(phone) {
+      margin-top: 0px;
+    }
+  }
+}

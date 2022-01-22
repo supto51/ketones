@@ -1,0 +1,153 @@
+.sk-product {
+  &__banner-right {
+    @include respond(phone) {
+      margin-top: 40px;
+    }
+  }
+
+  &__title {
+    margin-top: -10px;
+  }
+
+  &__short-details {
+    max-width: $content-width;
+    margin-top: 10px;
+
+    @include respond(phone) {
+      margin-top: 8px;
+    }
+  }
+
+  &__savings {
+    margin-top: 30px;
+    @include respond(phone) {
+      margin-top: 18px;
+    }
+
+  }
+
+  &__form {
+    max-width: $content-width;
+    margin-top: 55px;
+
+    @include respond(phone) {
+      max-width: 100%;
+      margin-top: 17px;
+    }
+  }
+
+  &__form-item {
+    &:not(:first-child) {
+      margin-top: 15px;
+    }
+
+    .what-this {
+      text-decoration: underline;
+
+      &:hover {
+        color: $color-brand;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__select-title {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+
+  &__user-select {
+    width: 100%;
+    height: auto;
+    background-color: $border-color-3;
+    border: 0.5px solid $border-color-3;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 4px;
+  }
+
+  &__select-flavor {
+    padding: 11px 12px 15px;
+  }
+
+  &__select-formula {
+    padding: 11px 20px 13px 40px;
+
+    &:not(:last-of-type) {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    &:not(:first-of-type) {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+
+    &.every-month {
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+  }
+
+  &__earn-offer {
+    margin-top: 8px;
+    a {
+      text-decoration: underline;
+
+      &:hover {
+        color: $btn-hover-color;
+      }
+    }
+  }
+
+  &__user-amount {
+    margin: 50px 0 30px;
+
+    @include respond(phone) {
+      margin-top: 23px;
+      margin-bottom: 42px;
+    }
+
+    .pack-qty-btn {
+      width: 50px;
+      height: 50px;
+      background: $border-color-3;
+      border: none;
+      border-radius: 5px;
+      font-style: normal;
+      font-weight: $font-bold;
+      font-size: $font-12;
+      line-height: $line-height-24;
+      text-align: center;
+      color: $color-black;
+
+      &:hover {
+        color: $color-brand;
+      }
+    }
+
+    .qty-width {
+      width: 53px;
+    }
+  }
+
+  &__amount-cost {
+    h4 {
+      font-size: $default-fontsize;
+      line-height: $line-height-28;
+    }
+  }
+
+  &__add-cart-icon {
+    width: 24px;
+    margin: -10px 5px -2px 0;
+  }
+}

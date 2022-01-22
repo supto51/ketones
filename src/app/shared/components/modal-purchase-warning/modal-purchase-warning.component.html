@@ -1,0 +1,30 @@
+<div id="PurchaseWarningModal" tabindex="-1" role="dialog"
+  class="modal fade zip-code-modal show"
+  style="display: block; padding-right: 15px;" aria-modal="true">
+  <div role="document" class="modal-dialog modal-dialog-centered">
+    <div class="modal-content"><button type="button"
+        data-dismiss="modal" aria-label="Close" class="close"><i
+          class="far fa-times"></i></button>
+      <div class="modal-body success">
+
+        <h3 class="title text-center color-black">Prüvit Food Beta
+          Launch</h3>
+        <p class="text-center p-small color-black">The beta rollout of
+          Prüvit Food does not support supplements and food in the
+          same order. Please complete your order with existing cart,
+          or empty and continue shopping.</p>
+        <p class="text-center extr-mrg">
+          <button
+            class="button button-primary button-large button-icon"
+            (click)="goToCart()">Go
+            to cart</button>
+        </p>
+        <p class="text-center">
+          <a class="button color-brand" (click)="emptyCart()">Empty
+            cart and continue
+            shopping</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

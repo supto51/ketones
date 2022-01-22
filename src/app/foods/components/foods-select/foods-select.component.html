@@ -1,0 +1,154 @@
+<main [style.margin-top.px]="discountHeight">
+  <section class="food-experience">
+    <article class="container">
+      <div class="col-12 product-breadcrumbs">
+        <ul class="p-small">
+          <li>
+            <a class="color-gray" (click)="onClickHome()"
+              ><i class="fas fa-home-lg-alt" style="font-size: 12px"></i
+            ></a>
+          </li>
+          <span class="breadcrumb-greater-than">›</span>
+          <li>
+            <a class="color-gray" (click)="onClicKFoodDelivery()"
+              >Food delivery</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <figure class="row text-center food-exp-banner slt-food">
+        <div class="col-sm-12">
+          <h1>{{ isAutoshipAvailable ? "Edit Selections" : "Select food" }}</h1>
+          <h4 class="date-text">
+            <i class="far fa-truck"></i>
+            {{
+              isAutoshipAvailable
+                ? discountInfo.autoshipShippingDate
+                : discountInfo.shippingDate
+            }}
+          </h4>
+          <p class="color-gray sub-text">
+            {{
+              isAutoshipAvailable
+                ? "Make changes before " + discountInfo.editDate
+                : "First shipment date, and weekly thereafter."
+            }}
+          </p>
+        </div>
+      </figure>
+
+      <figure class="row food-exp-body-wraper">
+        <div class="col-sm-12 title-col">
+          <h3 class="color-black">Quick Add</h3>
+        </div>
+        <div class="col-md-6 col-12 food-exp-item quick-add">
+          <div class="card" [style.background]="quickAddMenus.bGColor">
+            <div class="bottom-text">
+              <h3 class="color-white">{{ quickAddMenus.title }}</h3>
+              <h5 class="color-white">{{ quickAddMenus.description }}</h5>
+              <p class="p-small color-white price">
+                {{ boxTotalPrice | currency }} /week
+              </p>
+              <div class="btns-group">
+                <div
+                  (click)="onClickQuickAddPlus()"
+                  *ngIf="quickAddMenus.quantity === 0"
+                >
+                  <a class="button button-primary button-large add-btn"
+                    ><i class="far fa-plus"></i> Add</a
+                  >
+                </div>
+                <div
+                  *ngIf="quickAddMenus.quantity > 0"
+                  class="button button-primary button-large add-btn added"
+                >
+                  <a (click)="onClickQuickAddMinus()" class="pointer"
+                    ><i class="far fa-minus"></i
+                  ></a>
+                  {{ quickAddMenus.quantity }} added
+                  <a (click)="onClickQuickAddPlus()" class="pointer"
+                    ><i class="far fa-plus"></i
+                  ></a>
+                </div>
+              </div>
+
+              <p class="p-small">
+                <a
+                  href
+                  (click)="toggleTooltip($event)"
+                  id="whatsInIt"
+                  data-toggle="tooltip"
+                  data-html="true"
+                  data-placement="right"
+                  data-template="<div class='tooltip' role='tooltip'><div class='arrow right'></div><div class='pulse-credit tooltip-inner'></div></div>"
+                  [title]="quickAddMenusList"
+                  class="color-white"
+                  >What’s in it?
+                </a>
+              </p>
+            </div>
+
+            <div class="top-img img-right">
+              <div
+                class="food-img"
+                [ngStyle]="{
+                  'background-image': 'url(' + quickAddMenus.image + ')'
+                }"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </figure>
+
+      <div class="col-sm-12 title-col p-m-0 p-lg-0">
+        <h3 class="color-black">All products</h3>
+      </div>
+
+      <figure class="row food-exp-body-wraper">
+        <div class="col-sm-12 filter-sort-bar">
+          <div class="filter-col">
+            <a
+              (click)="onClickSubCategory('all')"
+              class="button button-primary"
+              [class.active]="selectedSubCategory === 'all'"
+              >All</a
+            >
+            <a
+              (click)="onClickSubCategory(subCategory)"
+              class="button button-primary"
+              [class.active]="selectedSubCategory === subCategory"
+              *ngFor="let subCategory of foodSubCategories"
+              >{{
+                subCategory === "OVEN_READY"
+                  ? "Meals"
+                  : subCategory === "SNACK_PACKS"
+                  ? "Snacks"
+                  : subCategory
+              }}</a
+            >
+          </div>
+
+          <div class="sort-col">
+            <span (click)="onClickFilterAndSort()">Filter + Sort</span>
+          </div>
+        </div>
+
+        <div
+          class="col-md-4 col-6 food-exp-item"
+          *ngFor="
+            let food of foods
+              | filterCategory: selectedCategory
+              | filterSubCategory: selectedSubCategory
+              | filterDiet: selectedDiets
+              | sort: selectedSort
+          "
+        >
+          <app-food-card [food]="food"></app-food-card>
+        </div>
+      </figure>
+    </article>
+  </section>
+</main>
+
+<app-foods-box></app-foods-box>
