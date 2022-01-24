@@ -2066,7 +2066,6 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit, OnDestroy {
             if (timeDifference > FoodUser.token_expire_time) {
               localStorage.removeItem('MVUser');
               localStorage.removeItem('Foods');
-              localStorage.removeItem('CheckoutFoods');
               localStorage.removeItem('FoodDelivery');
 
               this.sidebarDataService.setShortenedUrlLink('');
@@ -2098,7 +2097,6 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit, OnDestroy {
           } else {
             localStorage.removeItem('MVUser');
             localStorage.removeItem('Foods');
-            localStorage.removeItem('CheckoutFoods');
             localStorage.removeItem('FoodDelivery');
 
             this.sidebarDataService.setShortenedUrlLink('');
@@ -2107,7 +2105,6 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit, OnDestroy {
         } else {
           localStorage.removeItem('MVUser');
           localStorage.removeItem('Foods');
-          localStorage.removeItem('CheckoutFoods');
           localStorage.removeItem('FoodDelivery');
 
           this.sidebarDataService.setShortenedUrlLink('');
