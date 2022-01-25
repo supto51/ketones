@@ -1145,4 +1145,18 @@ export class HeaderComponent implements OnInit {
       return false;
     }
   }
+
+  onClickFoodLink(routerLink: string) {
+    this.utilityService.navigateToRoute(
+      routerLink,
+      this.selectedCountry,
+      this.selectedLanguage,
+      this.isStaging,
+      this.refCode,
+      this.defaultLanguage
+    );
+
+    $('.collapse.mobile-nav-menu-wrap').collapse('hide');
+    this.renderer.removeClass(document.body, 'navbar-show');
+  }
 }

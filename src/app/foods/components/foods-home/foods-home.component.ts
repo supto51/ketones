@@ -24,6 +24,7 @@ declare var loadTypeText: any;
 })
 export class FoodsHomeComponent implements OnInit, AfterViewInit, OnDestroy {
   foods: Food[] = [];
+  language = '';
   discountHeight = 0;
   subscriptions: SubscriptionLike[] = [];
 
@@ -42,6 +43,7 @@ export class FoodsHomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit(): void {
     this.setSeo();
+    this.getLanguage();
     this.getDiscountHeight();
     this.getFoods();
   }
@@ -56,6 +58,14 @@ export class FoodsHomeComponent implements OnInit, AfterViewInit, OnDestroy {
         },
       });
     });
+  }
+
+  getLanguage() {
+    this.subscriptions.push(
+      this.dataService.currentSelectedLanguage.subscribe((language: string) => {
+        this.language = language;
+      })
+    );
   }
 
   getDiscountHeight() {

@@ -19,6 +19,7 @@ declare var $: any;
 })
 export class ModalZipComponent implements OnInit, OnDestroy {
   @ViewChild('zipInput', { static: false }) zipInput!: ElementRef;
+  language = '';
   country = '';
   postalCode = '';
   isPostalAvailable = false;
@@ -40,10 +41,19 @@ export class ModalZipComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.getSelectedCountry();
+    this.getLanguage();
+    this.getCountry();
   }
 
-  getSelectedCountry() {
+  getLanguage() {
+    this.subscriptions.push(
+      this.dataService.currentSelectedLanguage.subscribe((language: string) => {
+        this.language = language;
+      })
+    );
+  }
+
+  getCountry() {
     this.subscriptions.push(
       this.dataService.currentSelectedCountry.subscribe(
         (countryCode: string) => {
@@ -81,7 +91,11 @@ export class ModalZipComponent implements OnInit, OnDestroy {
   }
 
   onClickContinue() {
-    this.router.navigate(['/food/select']);
+    this.language !== 'en'
+      ? this.router.navigate(['/food/select'], {
+          queryParams: { lang: this.language },
+        })
+      : this.router.navigate(['/food/select']);
 
     this.productsDataService.changePostName('');
     $('#userZipModal').modal('hide');

@@ -10,9 +10,12 @@
           </li>
           <span class="breadcrumb-greater-than">›</span>
           <li>
-            <a class="color-gray" (click)="onClicKFoodDelivery()">{{
-              "food-delivery" | translate
-            }}</a>
+            <a
+              class="color-gray"
+              [routerLink]="['/food']"
+              [queryParams]="language !== 'en' ? { lang: language } : {}"
+              >{{ "food-delivery" | translate }}</a
+            >
           </li>
         </ul>
       </div>

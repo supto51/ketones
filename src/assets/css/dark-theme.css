@@ -937,3 +937,14 @@ body.dark-theme,
 .dark-theme .foodLand-info {
   background: #000;
 }
+
+.dark-theme
+  .sk-header__navbar-padding
+  .sk-center-menu-wrap
+  .nav-item.dropdown
+  .dropdown-menu
+  .dropdown-menu-item
+  li
+  .disclaimer-bold {
+  color: #fff;
+}

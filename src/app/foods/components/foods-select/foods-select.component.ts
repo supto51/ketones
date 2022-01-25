@@ -6,7 +6,7 @@ import {
   Renderer2,
 } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { SubscriptionLike } from 'rxjs';
 import { ProductsDataService } from 'src/app/products/services/products-data.service';
@@ -59,7 +59,6 @@ export class FoodsSelectComponent implements OnInit, AfterViewInit, OnDestroy {
     private renderer: Renderer2,
     private dataService: AppDataService,
     private sidebarDataService: SidebarDataService,
-    private router: Router,
     private utilityService: AppUtilityService,
     private route: ActivatedRoute,
     private productsDataService: ProductsDataService,
@@ -326,10 +325,6 @@ export class FoodsSelectComponent implements OnInit, AfterViewInit, OnDestroy {
 
   onClickSubCategory(subCategory: string) {
     this.selectedSubCategory = subCategory;
-  }
-
-  onClicKFoodDelivery() {
-    this.router.navigate(['food']);
   }
 
   onClickHome() {
