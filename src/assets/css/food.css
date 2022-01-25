@@ -3459,3 +3459,16 @@
 .banner-video-wrap .play-icon:hover svg {
   fill: #204ceb;
 }
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .food-experience
+    .food-exp-body-wraper
+    .food-exp-item
+    .card
+    .bottom-text
+    .btns-group
+    .add-btn.added {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

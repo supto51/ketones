@@ -10,16 +10,22 @@
           </li>
           <span class="breadcrumb-greater-than">›</span>
           <li>
-            <a class="color-gray" (click)="onClicKFoodDelivery()"
-              >Food delivery</a
-            >
+            <a class="color-gray" (click)="onClicKFoodDelivery()">{{
+              "food-delivery" | translate
+            }}</a>
           </li>
         </ul>
       </div>
 
       <figure class="row text-center food-exp-banner slt-food">
         <div class="col-sm-12">
-          <h1>{{ isAutoshipAvailable ? "Edit Selections" : "Select food" }}</h1>
+          <h1>
+            {{
+              isAutoshipAvailable
+                ? ("edit-selections" | translate)
+                : ("select-food" | translate)
+            }}
+          </h1>
           <h4 class="date-text">
             <i class="far fa-truck"></i>
             {{
@@ -31,8 +37,14 @@
           <p class="color-gray sub-text">
             {{
               isAutoshipAvailable
-                ? "Make changes before " + discountInfo.editDate
-                : "First shipment date, and weekly thereafter."
+                ? ("make-changes-before" | translate) +
+                  " " +
+                  discountInfo.editDate
+                : ("first-shipment-date" | translate) +
+                  ", " +
+                  ("and" | translate) +
+                  " " +
+                  ("weekly-thereafter" | translate)
             }}
           </p>
         </div>
@@ -40,7 +52,7 @@
 
       <figure class="row food-exp-body-wraper">
         <div class="col-sm-12 title-col">
-          <h3 class="color-black">Quick Add</h3>
+          <h3 class="color-black">{{ "quick-add" | translate }}</h3>
         </div>
         <div class="col-md-6 col-12 food-exp-item quick-add">
           <div class="card" [style.background]="quickAddMenus.bGColor">
@@ -48,7 +60,7 @@
               <h3 class="color-white">{{ quickAddMenus.title }}</h3>
               <h5 class="color-white">{{ quickAddMenus.description }}</h5>
               <p class="p-small color-white price">
-                {{ boxTotalPrice | currency }} /week
+                {{ boxTotalPrice | currency }} /{{ "week" | translate }}
               </p>
               <div class="btns-group">
                 <div
@@ -56,7 +68,7 @@
                   *ngIf="quickAddMenus.quantity === 0"
                 >
                   <a class="button button-primary button-large add-btn"
-                    ><i class="far fa-plus"></i> Add</a
+                    ><i class="far fa-plus"></i> {{ "add" | translate }}</a
                   >
                 </div>
                 <div
@@ -66,7 +78,7 @@
                   <a (click)="onClickQuickAddMinus()" class="pointer"
                     ><i class="far fa-minus"></i
                   ></a>
-                  {{ quickAddMenus.quantity }} added
+                  {{ quickAddMenus.quantity }} {{ "added" | translate }}
                   <a (click)="onClickQuickAddPlus()" class="pointer"
                     ><i class="far fa-plus"></i
                   ></a>
@@ -84,7 +96,7 @@
                   data-template="<div class='tooltip' role='tooltip'><div class='arrow right'></div><div class='pulse-credit tooltip-inner'></div></div>"
                   [title]="quickAddMenusList"
                   class="color-white"
-                  >What’s in it?
+                  >{{ "whats-in-it" | translate }}
                 </a>
               </p>
             </div>
@@ -102,7 +114,7 @@
       </figure>
 
       <div class="col-sm-12 title-col p-m-0 p-lg-0">
-        <h3 class="color-black">All products</h3>
+        <h3 class="color-black">{{ "all-products" | translate }}</h3>
       </div>
 
       <figure class="row food-exp-body-wraper">
@@ -112,7 +124,7 @@
               (click)="onClickSubCategory('all')"
               class="button button-primary"
               [class.active]="selectedSubCategory === 'all'"
-              >All</a
+              >{{ "all" | translate }}</a
             >
             <a
               (click)="onClickSubCategory(subCategory)"
@@ -121,16 +133,18 @@
               *ngFor="let subCategory of foodSubCategories"
               >{{
                 subCategory === "OVEN_READY"
-                  ? "Meals"
+                  ? ("meals" | translate)
                   : subCategory === "SNACK_PACKS"
-                  ? "Snacks"
+                  ? ("snacks" | translate)
                   : subCategory
               }}</a
             >
           </div>
 
           <div class="sort-col">
-            <span (click)="onClickFilterAndSort()">Filter + Sort</span>
+            <span (click)="onClickFilterAndSort()"
+              >{{ "filter" | translate }} + {{ "sort" | translate }}</span
+            >
           </div>
         </div>
 

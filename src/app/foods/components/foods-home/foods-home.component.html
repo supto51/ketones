@@ -4,22 +4,23 @@
       <figure class="row">
         <div class="col-sm-12">
           <h1 class="title color-white text-center">
-            Better meals and snacks.
-            <span> Now delivered.</span>
+            {{ "better-meals-and-snacks" | translate }}.
+            <span> {{ "now-delivered" | translate }}.</span>
           </h1>
           <p class="healthy-text text-center">
-            Healthy, delicious, Prüvit approved meals made with farm-fresh
-            ingredients, ready in 5 minutes or less.
+            {{ "healthy-delicious" | translate }},
+            {{ "pruvit-approved-meals" | translate }},
+            {{ "ready-in-5-minutes" | translate }}.
           </p>
 
           <div class="explore-the-menu-wrap">
             <a routerLink="select" class="button button-primary button-large">
-              Explore the menu
+              {{ "explore-the-menu" | translate }}
             </a>
             <p class="text-center">
               <a (click)="checkZipCode()" class="pointer"
-                ><i aria-hidden="true" class="fas fa-map-marker-alt"></i>Check
-                your zip code</a
+                ><i aria-hidden="true" class="fas fa-map-marker-alt"></i
+                >{{ "check-your-zip-code" | translate }}</a
               >
             </p>
           </div>
@@ -62,7 +63,9 @@
     <article class="container">
       <figure class="row">
         <div class="col-sm-12">
-          <h2 class="title color-white text-center">How it works</h2>
+          <h2 class="title color-white text-center">
+            {{ "how-it-works" | translate }}
+          </h2>
 
           <div class="row how-it-row">
             <div class="col">
@@ -77,7 +80,9 @@
                   >
                   </lottie-player>
                 </div>
-                <p class="color-black">Choose your meals and snacks</p>
+                <p class="color-black">
+                  {{ "choose-your-meals-and-snacks" | translate }}
+                </p>
               </div>
             </div>
             <div class="col">
@@ -92,7 +97,9 @@
                   >
                   </lottie-player>
                 </div>
-                <p class="color-black">We deliver fresh each week</p>
+                <p class="color-black">
+                  {{ "we-deliver-fresh-each-week" | translate }}
+                </p>
               </div>
             </div>
             <div class="col">
@@ -107,7 +114,9 @@
                   >
                   </lottie-player>
                 </div>
-                <p class="color-black">Meals ready in 5 minutes or less</p>
+                <p class="color-black">
+                  {{ "meals-ready-in-5-minutes" | translate }}
+                </p>
               </div>
             </div>
             <div class="col">
@@ -122,7 +131,10 @@
                   >
                   </lottie-player>
                 </div>
-                <p class="color-black">Skip or cancel anytime</p>
+                <p class="color-black">
+                  {{ "skip" | translate }} {{ "or" | translate }}
+                  {{ "cancel-anytime" | translate }}
+                </p>
               </div>
             </div>
           </div>
@@ -137,14 +149,12 @@
       <figure class="row">
         <div class="col-sm-12 text-center">
           <div class="ultimate-title m-auto">
-            <h1>The ultimate time hack</h1>
+            <h1>{{ "ultimate-time-hack" | translate }}</h1>
             <h3 class="color-gray">
-              The average person spends ~1,140 hours per year devoted to
-              preparing, cooking, and eating.
+              {{ "average-person-spends-1140-hours" | translate }}
             </h3>
             <h3 class="color-black">
-              How will you spend the time you save with our ready-to-eat snacks
-              and quick-heat meals?
+              {{ "how-will-you-spend-the-time" | translate }}
             </h3>
           </div>
         </div>
@@ -201,12 +211,14 @@
         <div class="col-12">
           <div class="info-card box-shadow">
             <h2 class="title">
-              <span> Healthy, simple and tasty.</span> That’s the kind of
-              problem that Prüvit likes to solve.
+              <span> {{ "healthy-simple-and-tasty" | translate }}.</span>
+              {{ "thats-the-kind-of-problem" | translate }}.
             </h2>
             <div class="founder">
-              <h4>Brian Underwood</h4>
-              <p class="color-gray">Prüvit Co-founder & CEO</p>
+              <h4>{{ "brian-underwood" | translate }}</h4>
+              <p class="color-gray">
+                {{ "pruvit" | translate }} {{ "cofounder-and-ceo" | translate }}
+              </p>
               <img
                 src="assets/images/brain.png"
                 alt="img"
@@ -219,16 +231,22 @@
         <div class="col-12">
           <div class="info-card bg-green">
             <ul class="info-list">
-              <li class="info-item">Tastes amazing</li>
-              <li class="info-item">Clean, high quality ingredients</li>
-              <li class="info-item">Zero preparation time</li>
-              <li class="info-item">Prüvit community approved</li>
+              <li class="info-item">{{ "tastes-amazing" | translate }}</li>
+              <li class="info-item">
+                {{ "clean-high-quality-ingredients" | translate }}
+              </li>
+              <li class="info-item">
+                {{ "zero-preparation-time" | translate }}
+              </li>
+              <li class="info-item">
+                {{ "pruvit-community-approved" | translate }}
+              </li>
             </ul>
             <div class="invite">
-              <h2>Now we invite you to experience the difference.</h2>
+              <h2>{{ "we-invite-you-to-experience" | translate }}.</h2>
               <div class="link">
                 <a [routerLink]="['select']" class="pointer">
-                  Browse food
+                  {{ "browse-food" | translate }}
                   <i class="far fa-long-arrow-right"></i>
                 </a>
               </div>
@@ -242,32 +260,30 @@
               <div class="approved-card">
                 <div class="icon">⚡️</div>
                 <div class="info text-right">
-                  <p>CALORIES</p>
+                  <p>{{ "calories-uppercase" | translate }}</p>
                   <h3>350-550</h3>
                 </div>
               </div>
               <div class="approved-card">
                 <div class="icon">⚖️</div>
                 <div class="info text-right">
-                  <p>NET CARBS</p>
+                  <p>{{ "net-carbs-uppercase" | translate }}</p>
                   <h3>&lt;15g</h3>
                 </div>
               </div>
               <div class="approved-card">
                 <div class="icon">💪</div>
                 <div class="info text-right">
-                  <p>PROTEIN</p>
+                  <p>{{ "protein-uppercase" | translate }}</p>
                   <h3>20g+</h3>
                 </div>
               </div>
             </div>
 
             <div class="approved-info">
-              <h2>Prüvit approved macros, ready to eat or heat.</h2>
+              <h2>{{ "pruvit-approved-macros" | translate }}.</h2>
               <p class="color-gray">
-                Take the guess work out of your daily food habits. Dr Ryan
-                Lowery and the culinary team have crafted unique meals and
-                snacks that pair perfectly with your pursuit of Better.
+                {{ "take-the-guess-work-out" | translate }}.
               </p>
             </div>
           </div>
@@ -275,10 +291,10 @@
 
         <div class="col-12 best-in-class">
           <div class="best-slide">
-            <p>Another Prüvit first</p>
+            <p>{{ "another-pruvit-first" | translate }}</p>
 
             <h1>
-              Best-in-class
+              {{ "best-in-class" | translate }}
               <br />
               <span
                 class="txt-rotate"
@@ -306,20 +322,17 @@
       <figure class="row">
         <div class="col-sm-5 m-auto text-center">
           <div class="hungry-inner">
-            <h1>Hungry yet?</h1>
-            <p>
-              Find out if we can deliver our healthy, simple, and delicious
-              meals and snacks to your doorstep.
-            </p>
+            <h1>{{ "hungry-yet" | translate }}?</h1>
+            <p>{{ "find-out-if-we-can-deliver" | translate }}.</p>
 
             <div class="explore-the-menu-wrap">
               <a routerLink="select" class="button button-primary button-large">
-                Explore the menu
+                {{ "explore-the-menu" | translate }}
               </a>
               <p class="text-center">
                 <a (click)="checkZipCode()" class="pointer"
-                  ><i aria-hidden="true" class="fas fa-map-marker-alt"></i>Check
-                  your zip code</a
+                  ><i aria-hidden="true" class="fas fa-map-marker-alt"></i
+                  >{{ "check-your-zip-code" | translate }}</a
                 >
               </p>
             </div>
@@ -327,12 +340,11 @@
         </div>
         <div class="col-sm-12 text-center">
           <div class="source">
-            <h5 class="disclaimer-bold">Sources:</h5>
+            <h5 class="disclaimer-bold">{{ "sources" | translate }}:</h5>
             <p class="disclaimer-bold">
-              A year in food: Survey reveals millennials' eating and spending
-              habits.
+              {{ "a-year-in-food" | translate }}.
               <span class="disclaimer-reg">
-                28-Aug-2019 By Mary Ellen Shoup <br />
+                {{ "by-mary-ellen-shoup" | translate }} <br />
                 <a
                   href="https://www.foodnavigator-usa.com/article/2019/08/28/a-year-in-food-survey-reveals-millennials-eating-and-spending-habits"
                 >

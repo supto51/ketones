@@ -14,10 +14,12 @@
       }"
     >
       <div class="view-details" *ngIf="!isStartPlanning">
-        <button class="btn btn-outline-light">View Details</button>
+        <button class="btn btn-outline-light">
+          {{ "view-details" | translate }}
+        </button>
       </div>
     </div>
-    <span class="newTaq" *ngIf="food?.isNew">New</span>
+    <span class="newTaq" *ngIf="food?.isNew">{{ "new" | translate }}</span>
   </div>
   <div class="bottom-text text-center">
     <p class="food-taq-btn">
@@ -42,7 +44,7 @@
         (click)="onClickPlus()"
         *ngIf="food.quantity === 0 && !food.isOutOfStock"
         class="button button-primary button-large add-btn"
-        ><i class="far fa-plus"></i> Add</a
+        ><i class="far fa-plus"></i> {{ "add" | translate }}</a
       >
       <div
         *ngIf="food.quantity && food.quantity > 0 && !food.isOutOfStock"
@@ -51,13 +53,13 @@
         <a (click)="onClickMinus()" class="pointer"
           ><i class="far fa-minus"></i
         ></a>
-        {{ food.quantity }} added
+        {{ food.quantity }} {{ "added" | translate }}
         <a (click)="onClickPlus()" class="pointer"
           ><i class="far fa-plus"></i
         ></a>
       </div>
       <div class="sold-out" *ngIf="food.isOutOfStock">
-        <h4>Out Of Stock</h4>
+        <h4>{{ "out-of-stock" | translate }}</h4>
       </div>
     </div>
   </div>

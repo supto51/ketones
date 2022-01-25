@@ -4,10 +4,12 @@
       <i class="far fa-times"></i>
     </button>
     <div class="modal-body">
-      <h4 class="filter-title">Filter + Sort</h4>
+      <h4 class="filter-title">
+        {{ "filter" | translate }} + {{ "sort" | translate }}
+      </h4>
 
       <figure class="filter-group">
-        <h6 class="sub-title">Diet</h6>
+        <h6 class="sub-title">{{ "diet" | translate }}</h6>
         <label
           class="custom-checkbox form-control"
           *ngFor="let diet of dietTypes"
@@ -24,9 +26,9 @@
       </figure>
 
       <figure class="filter-group" *ngIf="false">
-        <h6 class="sub-title">Categories</h6>
+        <h6 class="sub-title">{{ "categories" | translate }}</h6>
         <label class="custom-radio form-control"
-          >Full menu
+          >{{ "full-menu" | translate }}
           <input
             type="radio"
             value="all"
@@ -52,9 +54,9 @@
       </figure>
 
       <figure class="filter-group">
-        <h6 class="sub-title">Sort by</h6>
+        <h6 class="sub-title">{{ "sort-by" | translate }}</h6>
         <label class="custom-radio form-control"
-          >Default
+          >{{ "default" | translate }}
           <input
             type="radio"
             value="default"
@@ -65,7 +67,7 @@
           <span class="checkmark"></span>
         </label>
         <label class="custom-radio form-control"
-          >Calories
+          >{{ "calories-titlecase" | translate }}
           <input
             type="radio"
             value="CALORIES"
@@ -76,7 +78,7 @@
           <span class="checkmark"></span>
         </label>
         <label class="custom-radio form-control"
-          >Net Carbs
+          >{{ "net-carbs-titlecase" | translate }}
           <input
             type="radio"
             value="NET_CARBOHYDRATES"
@@ -87,7 +89,7 @@
           <span class="checkmark"></span>
         </label>
         <label class="custom-radio form-control"
-          >Total Fat
+          >{{ "total-fat-titlecase" | translate }}
           <input
             type="radio"
             value="TOTAL_FAT"
@@ -98,7 +100,7 @@
           <span class="checkmark"></span>
         </label>
         <label class="custom-radio form-control"
-          >Protein
+          >{{ "protein-titlecase" | translate }}
           <input
             type="radio"
             value="PROTEIN"

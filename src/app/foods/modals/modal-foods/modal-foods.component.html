@@ -51,7 +51,7 @@
               *ngIf="food?.quantity === 0 && !food.isOutOfStock"
               class="button button-primary button-large add-btn"
             >
-              <i class="far fa-plus"></i> Add
+              <i class="far fa-plus"></i> {{ "add" | translate }}
             </button>
             <div
               *ngIf="food.quantity && food.quantity > 0 && !food.isOutOfStock"
@@ -60,28 +60,31 @@
               <a (click)="onClickMinus()" class="pointer"
                 ><i class="far fa-minus"></i
               ></a>
-              {{ food?.quantity }} added
+              {{ food?.quantity }} {{ "added" | translate }}
               <a (click)="onClickPlus()" class="pointer"
                 ><i class="far fa-plus"></i
               ></a>
             </div>
             <div class="sold-out" *ngIf="food.isOutOfStock">
-              <h4>Out Of Stock</h4>
+              <h4>{{ "out-of-stock" | translate }}</h4>
             </div>
           </div>
 
           <ul class="supplement-facts">
             <li *ngIf="protein(food)">
-              <span>{{ protein(food)?.unitSize }}</span> protein
+              <span>{{ protein(food)?.unitSize }}</span>
+              {{ "protein" | translate }}
             </li>
             <li *ngIf="netCarbs(food)">
-              <span>{{ netCarbs(food)?.unitSize }}</span> net carbs
+              <span>{{ netCarbs(food)?.unitSize }}</span>
+              {{ "net-carbs" | translate }}
             </li>
             <li *ngIf="fat(food)">
-              <span>{{ fat(food)?.unitSize }}</span> fat
+              <span>{{ fat(food)?.unitSize }}</span> {{ "fat" | translate }}
             </li>
             <li *ngIf="calories(food)">
-              <span>{{ calories(food)?.unitSize }}</span> calories
+              <span>{{ calories(food)?.unitSize }}</span>
+              {{ "calories" | translate }}
             </li>
           </ul>
 
@@ -103,7 +106,7 @@
                   aria-expanded="false"
                   aria-controls="ingredientsAccordion"
                 >
-                  Ingredients
+                  {{ "ingredients" | translate }}
                 </button>
               </div>
 
@@ -134,7 +137,7 @@
                   aria-expanded="false"
                   aria-controls="instructionsAccordion"
                 >
-                  Instructions
+                  {{ "instructions" | translate }}
                 </button>
               </div>
               <div
@@ -167,7 +170,7 @@
                   aria-expanded="false"
                   aria-controls="perServingsAccordion"
                 >
-                  Nutrition per serving
+                  {{ "nutrition-per-serving" | translate }}
                 </button>
               </div>
               <div
@@ -183,7 +186,7 @@
                     }}
                   </p>
                   <p *ngIf="food.allergens && food.allergens.length > 0">
-                    Contains:
+                    {{ "contains" | translate }}:
                     {{ concateAllergens(food.allergens ? food.allergens : []) }}
                   </p>
                   <p>
