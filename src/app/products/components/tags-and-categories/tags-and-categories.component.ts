@@ -31,6 +31,7 @@ export class TagsAndCategoriesComponent
   products: any[] = [];
   tagsOrCategories: any[] = [];
   tagsOrCategoriesProducts: any[] = [];
+  inSaleProducts: any[] = [];
   outOfStockProducts: any[] = [];
   tagOrCategoryName = '';
   tagOrCategoryDescription = '';
@@ -252,7 +253,8 @@ export class TagsAndCategoriesComponent
         });
 
         this.outOfStockProducts = isSoldOutProducts;
-        this.tagsOrCategoriesProducts = inSaleProducts;
+        this.inSaleProducts = inSaleProducts;
+        this.tagsOrCategoriesProducts = tempTagsOrCategories;
 
         this.sortOrder = 'alphabetic';
         this.setSeo();
