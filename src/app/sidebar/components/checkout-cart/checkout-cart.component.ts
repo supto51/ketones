@@ -2223,6 +2223,15 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit, OnDestroy {
       let isCartTotalOfferSkuFound = false;
       const offerArray: any[] = [];
 
+      const LocalMVUser = localStorage.getItem('MVUser');
+      let MVUser = LocalMVUser ? JSON.parse(LocalMVUser) : null;
+
+      const isNotLoggedInUsers =
+        MVUser === null ||
+        (MVUser &&
+          Object.keys(MVUser).length === 0 &&
+          MVUser.constructor === Object);
+
       if (this.productsData.hasOwnProperty('offer')) {
         this.productsData.offer.forEach((offer: any) => {
           if (offer.offer_type === 'cart_total') {
@@ -2239,9 +2248,16 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit, OnDestroy {
               isCartTotalOfferFound = true;
             }
 
-            if (isCartTotalOfferFound) {
-              offerArray.push(offer);
-              isCartTotalOfferSkuFound = this.getOfferSkuFoundStatus(offer);
+            if (!offer?.visitors_only) {
+              if (isCartTotalOfferFound) {
+                offerArray.push(offer);
+                isCartTotalOfferSkuFound = this.getOfferSkuFoundStatus(offer);
+              }
+            } else {
+              if (isCartTotalOfferFound && isNotLoggedInUsers) {
+                offerArray.push(offer);
+                isCartTotalOfferSkuFound = this.getOfferSkuFoundStatus(offer);
+              }
             }
           }
         });
