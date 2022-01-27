@@ -219,8 +219,14 @@ export class BannerSliderComponent implements OnInit, OnDestroy {
     this.productsDataService.changePostName(postName);
   }
 
-  getLinearBackground(rgb1: string, rgb2: string) {
-    return `linear-gradient(45deg, ` + rgb1 + ` , ` + rgb2 + `)`;
+  getBackgroundColor(bgImage?: string, rgb1?: string, rgb2?: string) {
+    if (bgImage !== '') {
+      return 'url(' + bgImage + ')';
+    } else if (rgb1 !== '' && rgb2 !== '') {
+      return `linear-gradient(45deg, ${rgb1}, ${rgb2})`;
+    } else {
+      return '';
+    }
   }
 
   onClickProductImage(postName: string) {

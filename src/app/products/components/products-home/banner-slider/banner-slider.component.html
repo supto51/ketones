@@ -1,61 +1,86 @@
 <section class="sk-main__top">
   <div class="container sk-main__slider-container">
     <div class="sk-main__title text-center">
-      <h1 class="color-black">{{ 'official-store' | translate }}
-      </h1>
+      <h1 class="color-black">{{ "official-store" | translate }}</h1>
 
-      <h4 class="color-black sk-main__title-b"
-        *ngIf="isReferrerPresent">
-        {{ 'brought-to-you-by' | translate }}
-        <span class="color-brand link-hover"
-          (click)="onClickReferrerName()">{{ referrer?.name }}</span>
+      <h4 class="color-black sk-main__title-b" *ngIf="isReferrerPresent">
+        {{ "brought-to-you-by" | translate }}
+        <span class="color-brand link-hover" (click)="onClickReferrerName()">{{
+          referrer?.name
+        }}</span>
       </h4>
 
-      <button class="button button-primary btn-create-account buy-now"
+      <button
+        class="button button-primary btn-create-account buy-now"
         *ngIf="isSubDomain && isEuropeCountryShown() && !isStaging"
-        (click)="onClickCreateAccount()">
-        {{ 'create-account' | translate }}
+        (click)="onClickCreateAccount()"
+      >
+        {{ "create-account" | translate }}
       </button>
     </div>
 
-    <div class="sk-main__banner-slider"
-      *ngIf="featureProducts.length > 0">
-      <div class="sk-main__banner"
-        [style.opacity]="(featureProducts.length < 2) ? 1 : null"
-        [style.background]="(product.mvp_slider_bgcolor_1 !== '' && product.mvp_slider_bgcolor_2 !== '') ?
-          getLinearBackground(
+    <div class="sk-main__banner-slider" *ngIf="featureProducts.length > 0">
+      <div
+        class="sk-main__banner"
+        [style.opacity]="featureProducts.length < 2 ? 1 : null"
+        [ngStyle]="{
+          'background-image': getBackgroundColor(
+            product.mvp_slider_image,
             product.mvp_slider_bgcolor_1,
             product.mvp_slider_bgcolor_2
-          ) : product.mvproduct_theme_color | textSanitizer : 'style'
-        " *ngFor="let product of featureProducts">
+          )
+        }"
+        *ngFor="let product of featureProducts"
+      >
         <div class="row">
           <div class="col-md-6 sk-main__custom-col-m">
             <div class="sk-main__left">
-              <h1 class="color-white sk-main__subtitle-m"
-                [innerHTML]="product.mvp_slider_headline">
-              </h1>
+              <h1
+                class="color-white sk-main__subtitle-m"
+                [innerHTML]="product.mvp_slider_headline"
+              ></h1>
 
               <div class="sk-main__how-it-work">
                 <span
-                  *ngIf="isPruvitTVPresent(product?.mvproduct_wistia_video_link); else wistiaContainer"
+                  *ngIf="
+                    isPruvitTVPresent(product?.mvproduct_wistia_video_link);
+                    else wistiaContainer
+                  "
                   class="a-link link-hover"
-                  (click)="onClickPruvitTvVideo(product?.mvproduct_wistia_video_link)"><i
-                    class="far fa-play-circle play-icon"></i>{{
-                  product?.banner_link_label !== '' ?
-                  product?.banner_link_label : getTranslatedText()
-                  }}</span>
+                  (click)="
+                    onClickPruvitTvVideo(product?.mvproduct_wistia_video_link)
+                  "
+                  ><i class="far fa-play-circle play-icon"></i
+                  >{{
+                    product?.banner_link_label !== ""
+                      ? product?.banner_link_label
+                      : getTranslatedText()
+                  }}</span
+                >
                 <ng-template #wistiaContainer>
-                  <span class="btn btn-brand-primary btn-large btn-icon btn-watch btn-watch-videopop wistia_embed wistia_async_{{
-                    getWistiaVideoID(product?.banner_link_url !== ''
-                    ? product?.banner_link_url : product?.mvproduct_wistia_video_link)
-                  }} popover=true popoverContent=link"
-                    style="display: inline;">
-                    <span class="a-link link-hover"
-                      *ngIf="product?.banner_link_url !== '' || product?.mvproduct_wistia_video_link !== ''"><i
-                        class="far fa-play-circle play-icon"></i>{{
-                      product?.banner_link_label !== '' ?
-                      product?.banner_link_label : getTranslatedText()
-                      }}</span>
+                  <span
+                    class="btn btn-brand-primary btn-large btn-icon btn-watch btn-watch-videopop wistia_embed wistia_async_{{
+                      getWistiaVideoID(
+                        product?.banner_link_url !== ''
+                          ? product?.banner_link_url
+                          : product?.mvproduct_wistia_video_link
+                      )
+                    }} popover=true popoverContent=link"
+                    style="display: inline"
+                  >
+                    <span
+                      class="a-link link-hover"
+                      *ngIf="
+                        product?.banner_link_url !== '' ||
+                        product?.mvproduct_wistia_video_link !== ''
+                      "
+                      ><i class="far fa-play-circle play-icon"></i
+                      >{{
+                        product?.banner_link_label !== ""
+                          ? product?.banner_link_label
+                          : getTranslatedText()
+                      }}</span
+                    >
                   </span>
                 </ng-template>
               </div>
@@ -65,21 +90,26 @@
                   class="button button-primary buy-now-lg sk-main__banner-custom-btn"
                   data-toggle="modal"
                   data-target="#exampleModalCenter"
-                  (click)="onClickBuyNow(product.post_name)">
-                  {{ 'buy-now' | translate }}
+                  (click)="onClickBuyNow(product.post_name)"
+                >
+                  {{ "buy-now" | translate }}
                 </button>
               </div>
             </div>
           </div>
           <div class="col-md-6 sk-main__custom-col-m">
             <div class="sk-main__right text-center">
-              <img [src]="
-              product.mvp_slider_feature_image && product.mvp_slider_feature_image !== ''
+              <img
+                [src]="
+                  product.mvp_slider_feature_image &&
+                  product.mvp_slider_feature_image !== ''
                     ? product.mvp_slider_feature_image
                     : product.post_thumb_url
-                " alt="Banner img"
+                "
+                alt="Banner img"
                 class="img-fluid sk-main__banner-img pointer"
-                (click)="onClickProductImage(product.post_name)" />
+                (click)="onClickProductImage(product.post_name)"
+              />
             </div>
           </div>
         </div>

@@ -334,6 +334,15 @@ export class ModalUtilitiesComponent implements OnInit, OnDestroy {
       this.promoterCartData
     ).everyMonth;
 
+    const LocalMVUser = localStorage.getItem('MVUser');
+    let MVUser = LocalMVUser ? JSON.parse(LocalMVUser) : null;
+
+    const isNotLoggedInUsers =
+      MVUser === null ||
+      (MVUser &&
+        Object.keys(MVUser).length === 0 &&
+        MVUser.constructor === Object);
+
     if (this.productsData.hasOwnProperty('offer')) {
       this.productsData.offer.forEach((offer: any) => {
         if (offer.offer_type === 'cart_total') {
@@ -353,8 +362,14 @@ export class ModalUtilitiesComponent implements OnInit, OnDestroy {
             cartEveryMonth
           );
 
-          if (cartTotalOfferFound && !isOfferSkuFound) {
-            availableOffers.push(offer);
+          if (!offer?.visitors_only) {
+            if (cartTotalOfferFound && !isOfferSkuFound) {
+              availableOffers.push(offer);
+            }
+          } else {
+            if (cartTotalOfferFound && !isOfferSkuFound && isNotLoggedInUsers) {
+              availableOffers.push(offer);
+            }
           }
         }
         if (offer.offer_type === 'sku_purchase') {
@@ -384,8 +399,14 @@ export class ModalUtilitiesComponent implements OnInit, OnDestroy {
             cartEveryMonth
           );
 
-          if (skuBasedOfferFound && !isOfferSkuFound) {
-            availableOffers.push(offer);
+          if (!offer?.visitors_only) {
+            if (skuBasedOfferFound && !isOfferSkuFound) {
+              availableOffers.push(offer);
+            }
+          } else {
+            if (skuBasedOfferFound && !isOfferSkuFound && isNotLoggedInUsers) {
+              availableOffers.push(offer);
+            }
           }
         }
       });
@@ -1098,6 +1119,15 @@ export class ModalUtilitiesComponent implements OnInit, OnDestroy {
       cartDataWithLanguages
     ).everyMonth;
 
+    const LocalMVUser = localStorage.getItem('MVUser');
+    let MVUser = LocalMVUser ? JSON.parse(LocalMVUser) : null;
+
+    const isNotLoggedInUsers =
+      MVUser === null ||
+      (MVUser &&
+        Object.keys(MVUser).length === 0 &&
+        MVUser.constructor === Object);
+
     if (this.productsData.hasOwnProperty('offer')) {
       this.productsData.offer.forEach((offer: any) => {
         if (offer.offer_type === 'cart_total') {
@@ -1117,8 +1147,14 @@ export class ModalUtilitiesComponent implements OnInit, OnDestroy {
             cartEveryMonth
           );
 
-          if (cartTotalOfferFound && !isOfferSkuFound) {
-            availableOffers.push(offer);
+          if (!offer?.visitors_only) {
+            if (cartTotalOfferFound && !isOfferSkuFound) {
+              availableOffers.push(offer);
+            }
+          } else {
+            if (cartTotalOfferFound && !isOfferSkuFound && isNotLoggedInUsers) {
+              availableOffers.push(offer);
+            }
           }
         }
       });

@@ -1006,6 +1006,9 @@ body.no-offer-bar .search-box-modal {
   border-radius: 20px;
   margin: 0 20px;
   opacity: 0.25;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .sk-main__banner.slick-current {
