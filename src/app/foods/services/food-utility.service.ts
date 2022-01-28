@@ -49,10 +49,6 @@ export class FoodUtilityService {
   }
 
   redirectToMVLogin(routerUrl: string) {
-    const redirectRoute: string = routerUrl.includes('?')
-      ? routerUrl.split('?')[0]
-      : routerUrl;
-
     localStorage.removeItem('MVUser');
     localStorage.removeItem('Foods');
     localStorage.removeItem('CheckoutFoods');
@@ -65,7 +61,7 @@ export class FoodUtilityService {
     }/&client_id=${
       this.clientId
     }&scope=openid%20offline_access%20newgen&state=${JSON.stringify(
-      redirectRoute
+      routerUrl
     )}`;
   }
 

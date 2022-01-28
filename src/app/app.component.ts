@@ -80,6 +80,7 @@ export class AppComponent implements OnInit {
   isCookieForCountry = false;
   isCookiePresent = -1;
   currentModalId = '';
+  isRootRoute = false;
   isBrowser: boolean;
 
   constructor(
@@ -656,13 +657,22 @@ export class AppComponent implements OnInit {
 
   loginMVUser() {
     let redirectUrl = '';
+    let isEditSelections = false;
 
     this.route.queryParamMap.subscribe((params) => {
       const code = params.get('code');
       const state = params.get('state');
 
       if (state !== null) {
-        redirectUrl = JSON.parse(state);
+        const routerUrl: string = JSON.parse(state);
+
+        isEditSelections = routerUrl.includes('edit_selections=true');
+
+        const tempRedirectRoute: string = routerUrl.includes('?')
+          ? routerUrl.split('?')[0]
+          : routerUrl;
+
+        redirectUrl = tempRedirectRoute;
       }
 
       if (code !== null) {
@@ -679,6 +689,9 @@ export class AppComponent implements OnInit {
             ) {
               if (redirectUrl.startsWith('/food')) {
                 if (userData.user_info.mvuser_has_food_access) {
+                  if (isEditSelections)
+                    userData.user_info.isEditSelections = true;
+
                   localStorage.setItem(
                     'MVUser',
                     JSON.stringify(userData.user_info)
@@ -744,6 +757,12 @@ export class AppComponent implements OnInit {
   }
 
   onActivate() {
+    const routePath = this.router.url.includes('?')
+      ? this.router.url.split('?')[0]
+      : this.router.url;
+
+    this.isRootRoute = routePath === '/';
+
     if (this.isBrowser) {
       $('#exampleModalCenter').modal('hide');
       $('#joinAsPromoterModal').modal('hide');

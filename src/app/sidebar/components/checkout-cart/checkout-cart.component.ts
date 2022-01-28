@@ -2078,7 +2078,7 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit, OnDestroy {
                   ? []
                   : FoodUser.food_autoship_data;
 
-              if (autoshipFoods.length !== 0) {
+              if (autoshipFoods.length !== 0 || FoodUser.isEditSelections) {
                 this.setFoodCheckoutUrl(
                   FoodUser.mvuser_refCode,
                   true,
