@@ -1,3 +1,7 @@
+#### 1.0.15 - 29.01.2022
+
+- Food: new changes merge
+
 #### 1.0.14 - 01.12.2021
 
 - QORE-116 Showing message when no order history is present
