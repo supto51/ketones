@@ -1,11 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { SubscriptionLike } from 'rxjs';
 import { ProductsDataService } from 'src/app/products/services/products-data.service';
+import { AppCheckoutService } from 'src/app/shared/services/app-checkout.service';
 import { AppDataService } from 'src/app/shared/services/app-data.service';
 import { AppUtilityService } from 'src/app/shared/services/app-utility.service';
 import { SidebarDataService } from 'src/app/sidebar/services/sidebar-data.service';
 import { AppState } from 'src/app/store/app.reducer';
+import { environment } from 'src/environments/environment';
 import { FoodCart } from '../../models/food-cart.model';
 import { FoodDelivery } from '../../models/food-delivery.model';
 import { FoodDiscount } from '../../models/food-discount.model';
@@ -40,6 +43,12 @@ export class FoodsBoxFooterComponent implements OnInit, OnDestroy {
   discountInfo = {} as FoodDiscount;
   discountedItems = 0;
   quickAddMenus = {} as QuickAddMenus;
+  isEditSelections = false;
+  isStaging: boolean;
+  gaCode = '';
+  fbCode = '';
+  googleConversionId = '';
+  googleConversionLabel = '';
   subscriptions: SubscriptionLike[] = [];
 
   constructor(
@@ -48,12 +57,17 @@ export class FoodsBoxFooterComponent implements OnInit, OnDestroy {
     private dataService: AppDataService,
     private appUtilityService: AppUtilityService,
     private productsDataService: ProductsDataService,
+    private appCheckoutService: AppCheckoutService,
+    private route: ActivatedRoute,
     private store: Store<AppState>
-  ) {}
+  ) {
+    this.isStaging = environment.isStaging;
+  }
 
   ngOnInit(): void {
     this.getCountry();
     this.getLanguage();
+    this.getReferrer();
     this.getFoods();
   }
 
@@ -73,6 +87,45 @@ export class FoodsBoxFooterComponent implements OnInit, OnDestroy {
         this.language = language;
       })
     );
+  }
+
+  getReferrer() {
+    if (this.isStaging) {
+      this.route.queryParamMap.subscribe((params) => {
+        const refCode = params.get('ref');
+        if (refCode !== null) {
+          this.subscriptions.push(
+            this.dataService.currentReferrerData.subscribe((referrer: any) => {
+              if (referrer) {
+                this.gaCode = referrer.ga_track_id;
+                this.fbCode = referrer.fb_pixel_id;
+                this.googleConversionId = referrer.ga_ad_track_id
+                  ? referrer.ga_ad_track_id
+                  : '';
+                this.googleConversionLabel = referrer.ga_ad_conv_lbl
+                  ? referrer.ga_ad_conv_lbl
+                  : '';
+              }
+            })
+          );
+        }
+      });
+    } else {
+      this.subscriptions.push(
+        this.dataService.currentReferrerData.subscribe((referrer: any) => {
+          if (referrer) {
+            this.gaCode = referrer.ga_track_id;
+            this.fbCode = referrer.fb_pixel_id;
+            this.googleConversionId = referrer.ga_ad_track_id
+              ? referrer.ga_ad_track_id
+              : '';
+            this.googleConversionLabel = referrer.ga_ad_conv_lbl
+              ? referrer.ga_ad_conv_lbl
+              : '';
+          }
+        })
+      );
+    }
   }
 
   getFoods() {
@@ -111,8 +164,38 @@ export class FoodsBoxFooterComponent implements OnInit, OnDestroy {
             : this.discountInfo.discounts.find(
                 (discount) => discount.numberOfBox === this.box.boxNo + 1
               ) || {};
+
+        this.getEditSelectionsStatus();
       })
     );
+  }
+
+  getEditSelectionsStatus() {
+    const LocalMVUser = localStorage.getItem('MVUser');
+    const FoodUser = LocalMVUser ? JSON.parse(LocalMVUser) : null;
+
+    const LocalCartTime = localStorage.getItem('CartTime');
+    const cartStorageValue = LocalCartTime ? JSON.parse(LocalCartTime) : null;
+    const currentTime = new Date().getTime();
+    const timeDifference = (currentTime - cartStorageValue) / 1000;
+
+    if (cartStorageValue !== null) {
+      if (FoodUser !== null) {
+        if (timeDifference > FoodUser.token_expire_time) {
+          this.isEditSelections = false;
+        } else {
+          if (FoodUser.isEditSelections) {
+            this.isEditSelections = true;
+          } else {
+            this.isEditSelections = false;
+          }
+        }
+      } else {
+        this.isEditSelections = false;
+      }
+    } else {
+      this.isEditSelections = false;
+    }
   }
 
   onClickAddToCart() {
@@ -177,8 +260,19 @@ export class FoodsBoxFooterComponent implements OnInit, OnDestroy {
 
       this.store.dispatch(new SetQuickAddMenusActon(tempQuickAddMenus));
 
-      this.sidebarDataService.changeSidebarName('checkout-cart');
-      $('.drawer').drawer('open');
+      if (this.isEditSelections) {
+        this.appCheckoutService.checkoutFood(
+          this.country,
+          this.language,
+          this.gaCode,
+          this.fbCode,
+          this.googleConversionId,
+          this.googleConversionLabel
+        );
+      } else {
+        this.sidebarDataService.changeSidebarName('checkout-cart');
+        $('.drawer').drawer('open');
+      }
     }
   }
 

@@ -68,9 +68,12 @@
             <a
               (click)="onClickAddToCart()"
               class="button button-primary button-icon"
-              >{{ "add-to-cart" | translate }} ({{
-                boxTotalPrice | currency
-              }})</a
+              >{{
+                isEditSelections
+                  ? ("confirm_selections" | translate)
+                  : ("add-to-cart" | translate)
+              }}
+              ({{ boxTotalPrice | currency }})</a
             >
           </ng-template>
         </div>
