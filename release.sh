@@ -3,8 +3,8 @@ npm --version
 node --version
 #npm install --only=dev
 npm install 
-npm run-script build -- --configuration=demo --aot --output-hashing=all --output-path=dist
-npm run-script build -- --configuration=production --aot --output-hashing=all --output-path=dist2
+npm run-script demo_build -- --aot --output-hashing=all --output-path=dist
+npm run-script prod_build -- --aot --output-hashing=all --output-path=dist2
 echo "staging:" 
 cp -R $LOCAL_PATH/dist $LOCAL_PATH/docker/dist
 cp -R $LOCAL_PATH/dist2 $LOCAL_PATH/docker/dist2
