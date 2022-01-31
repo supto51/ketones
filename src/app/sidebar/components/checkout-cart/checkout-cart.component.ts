@@ -2039,6 +2039,7 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onClickFoodCheckout() {
+    // use checkout service
     this.dataService.setIsCheckoutFromFoodStatus(true);
 
     if (this.foodDelivery.totalItems !== 0) {
