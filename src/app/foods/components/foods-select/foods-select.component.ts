@@ -53,6 +53,7 @@ export class FoodsSelectComponent implements OnInit, AfterViewInit, OnDestroy {
   noOfItems = 0;
   eligibleNoOfItems = 0;
   isTooltipShown = false;
+  isEditSelections = false;
   subscriptions: SubscriptionLike[] = [];
 
   constructor(
@@ -214,6 +215,9 @@ export class FoodsSelectComponent implements OnInit, AfterViewInit, OnDestroy {
           .join('<br>');
 
         this.setShippingInfo();
+
+        this.isEditSelections =
+          this.foodUtilityService.getEditSelectionsStatus();
 
         $(document).ready(() => {
           tooltipJS();

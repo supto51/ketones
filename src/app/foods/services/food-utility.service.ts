@@ -228,4 +228,32 @@ export class FoodUtilityService {
 
     localStorage.setItem('Foods', JSON.stringify(Foods));
   }
+
+  getEditSelectionsStatus() {
+    const LocalMVUser = localStorage.getItem('MVUser');
+    const FoodUser = LocalMVUser ? JSON.parse(LocalMVUser) : null;
+
+    const LocalCartTime = localStorage.getItem('CartTime');
+    const cartStorageValue = LocalCartTime ? JSON.parse(LocalCartTime) : null;
+    const currentTime = new Date().getTime();
+    const timeDifference = (currentTime - cartStorageValue) / 1000;
+
+    if (cartStorageValue !== null) {
+      if (FoodUser !== null) {
+        if (timeDifference > FoodUser.token_expire_time) {
+          return false;
+        } else {
+          if (FoodUser.isEditSelections) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
 }
