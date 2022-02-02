@@ -319,6 +319,19 @@ export class PromoterComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
+  get isAsianMarkets() {
+    if (
+      this.selectedCountry === 'HK' ||
+      this.selectedCountry === 'MO' ||
+      this.selectedCountry === 'MY' ||
+      this.selectedCountry === 'SG'
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   ngOnDestroy() {
     this.subscriptions.forEach((element) => {
       element.unsubscribe();
