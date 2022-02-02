@@ -165,37 +165,10 @@ export class FoodsBoxFooterComponent implements OnInit, OnDestroy {
                 (discount) => discount.numberOfBox === this.box.boxNo + 1
               ) || {};
 
-        this.getEditSelectionsStatus();
+        this.isEditSelections =
+          this.foodUtilityService.getEditSelectionsStatus();
       })
     );
-  }
-
-  getEditSelectionsStatus() {
-    const LocalMVUser = localStorage.getItem('MVUser');
-    const FoodUser = LocalMVUser ? JSON.parse(LocalMVUser) : null;
-
-    const LocalCartTime = localStorage.getItem('CartTime');
-    const cartStorageValue = LocalCartTime ? JSON.parse(LocalCartTime) : null;
-    const currentTime = new Date().getTime();
-    const timeDifference = (currentTime - cartStorageValue) / 1000;
-
-    if (cartStorageValue !== null) {
-      if (FoodUser !== null) {
-        if (timeDifference > FoodUser.token_expire_time) {
-          this.isEditSelections = false;
-        } else {
-          if (FoodUser.isEditSelections) {
-            this.isEditSelections = true;
-          } else {
-            this.isEditSelections = false;
-          }
-        }
-      } else {
-        this.isEditSelections = false;
-      }
-    } else {
-      this.isEditSelections = false;
-    }
   }
 
   onClickAddToCart() {
