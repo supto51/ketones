@@ -1120,7 +1120,14 @@ export class FormComponent implements OnInit, OnDestroy {
       );
 
       if (this.isProductForPromoter) {
-        if (this.selectedCountry !== 'GB' && this.selectedCountry !== 'IT') {
+        if (
+          this.selectedCountry !== 'GB' &&
+          this.selectedCountry !== 'IT' &&
+          this.selectedCountry !== 'HK' &&
+          this.selectedCountry !== 'MO' &&
+          this.selectedCountry !== 'MY' &&
+          this.selectedCountry !== 'SG'
+        ) {
           cartDataWithLanguages.forEach((cartData: any) => {
             cartData.isPromoter = true;
           });

@@ -371,7 +371,14 @@ export class BrandBuilderComponent implements OnInit, AfterViewInit, OnDestroy {
       localStorage.setItem('DirectCheckout', JSON.stringify(false));
       this.dataService.setIsFromSmartshipStatus(false);
 
-      if (this.selectedCountry !== 'GB' && this.selectedCountry !== 'IT') {
+      if (
+        this.selectedCountry !== 'GB' &&
+        this.selectedCountry !== 'IT' &&
+        this.selectedCountry !== 'HK' &&
+        this.selectedCountry !== 'MO' &&
+        this.selectedCountry !== 'MY' &&
+        this.selectedCountry !== 'SG'
+      ) {
         cartDataWithLanguages.forEach((cartData: any) => {
           cartData.isPromoter = true;
         });
