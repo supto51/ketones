@@ -61,6 +61,10 @@ export class HeaderComponent implements OnInit {
   bannerArray: any[] = [];
   categories: any[] = [];
   discountHeight = 0;
+  clientDomainURL = '';
+  returningUrl = '';
+  isUserLoggedIn = false;
+  userAvatar = '';
 
   constructor(
     private dataService: AppDataService,
@@ -78,6 +82,8 @@ export class HeaderComponent implements OnInit {
   ) {
     this.userRedirectURL = environment.userURL;
     this.isStaging = environment.isStaging;
+    this.returningUrl = environment.returningURL;
+    this.clientDomainURL = environment.clientDomainURL;
   }
 
   ngOnInit(): void {
@@ -91,6 +97,38 @@ export class HeaderComponent implements OnInit {
     this.getDeepLinkStatus();
     this.getOfferFlowStatus();
     this.getBlogs();
+    this.checkUserSessionExpiry();
+  }
+
+  checkUserSessionExpiry() {
+    const LocalMVUser = localStorage.getItem('MVUser');
+    const FoodUser = LocalMVUser ? JSON.parse(LocalMVUser) : null;
+
+    const LocalCartTime = localStorage.getItem('CartTime');
+    const cartStorageValue = LocalCartTime ? JSON.parse(LocalCartTime) : null;
+    const currentTime = new Date().getTime();
+    const timeDifference = (currentTime - cartStorageValue) / 1000;
+
+    this.userAvatar = 'assets/images/avatar2.png';
+
+    if (cartStorageValue !== null && FoodUser !== null) {
+      const timeLeft = (FoodUser.token_expire_time - timeDifference) * 1000;
+
+      if (timeLeft > 0) {
+        this.isUserLoggedIn = true;
+
+        const userInfo = JSON.parse(FoodUser.mvuser_info);
+        const imageUrl = userInfo?.collection[0]?.imageUrl;
+
+        this.userAvatar = imageUrl ? imageUrl : 'assets/images/avatar2.png';
+
+        setTimeout(() => {
+          this.isUserLoggedIn = false;
+
+          localStorage.removeItem('MVUser');
+        }, timeLeft);
+      }
+    }
   }
 
   getBlogs() {
@@ -742,7 +780,7 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  onClickUser() {
+  onClickPruvitCloud() {
     window.location.href = this.userRedirectURL;
   }
 
@@ -1187,5 +1225,25 @@ export class HeaderComponent implements OnInit {
 
     $('.collapse.mobile-nav-menu-wrap').collapse('hide');
     this.renderer.removeClass(document.body, 'navbar-show');
+  }
+
+  onlogin() {
+    this.onClickPruvitCloud();
+  }
+
+  onLogout() {
+    this.isUserLoggedIn = false;
+
+    const LocalMVUser = localStorage.getItem('MVUser');
+    const FoodUser = LocalMVUser ? JSON.parse(LocalMVUser) : null;
+
+    if (FoodUser !== null) {
+      const idToken = FoodUser.id_token;
+
+      localStorage.removeItem('MVUser');
+
+      window.location.href = `${this.returningUrl}connect/endsession?id_token_hint=${idToken}
+      &post_logout_redirect_uri=${this.clientDomainURL}`;
+    }
   }
 }

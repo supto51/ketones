@@ -1,17 +1,6 @@
-.food-experience {
-  margin-top: 114px;
-}
-
 @media only screen and (min-width: 768px) and (max-width: 900px) {
   .food-experience {
-    margin-top: 94px;
     margin-bottom: 100px;
-  }
-}
-
-@media only screen and (max-width: 767px) {
-  .food-experience {
-    margin-top: 100px;
   }
 }
 

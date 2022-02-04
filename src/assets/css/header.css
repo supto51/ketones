@@ -604,3 +604,35 @@ body.navbar-show .navbar-overlay {
   margin-left: 6px;
   color: #fff;
 }
+
+.sk-header .sk-header__nav-link.nav-link .user-img {
+  width: 24px;
+  height: 24px;
+  border-radius: 50px;
+  object-fit: cover;
+}
+
+.sk-header .nav-item.user-dropdown .dropdown-toggle::after {
+  display: none;
+}
+
+.sk-header .nav-item.user-dropdown .dropdown-menu {
+  right: 10px;
+  left: auto;
+  min-width: 124px;
+  padding: 4px 0;
+  margin: 2px 0 0;
+  border-radius: 6px;
+  border-color: #e1e1e1;
+  box-shadow: 0 10px 10px 0 rgb(0 0 0 / 10%), 0 0 10px 0 rgb(0 0 0 / 10%);
+}
+
+.sk-header .nav-item.user-dropdown .dropdown-menu .dropdown-item {
+  padding: 6px 16px;
+}
+
+.sk-header .nav-item.user-dropdown .dropdown-menu .dropdown-item:hover {
+  background: transparent;
+  color: #2152ff;
+  cursor: pointer;
+}

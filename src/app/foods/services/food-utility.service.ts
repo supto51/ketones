@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { FoodCart } from '../models/food-cart.model';
 import { Food } from '../models/food.model';

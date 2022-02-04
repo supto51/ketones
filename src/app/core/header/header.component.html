@@ -458,14 +458,32 @@
             </a>
           </li>
 
-          <li class="nav-item">
+          <li class="nav-item dropdown user-dropdown">
             <a
+              *ngIf="!isUserLoggedIn"
               class="nav-link sk-header__nav-link pointer"
-              (click)="onClickUser()"
+              (click)="onlogin()"
             >
               <i class="far fa-user sk-header__user-card color-black"></i>
               <span class="text-label">Login</span>
             </a>
+            <a
+              *ngIf="isUserLoggedIn"
+              class="nav-link sk-header__nav-link pointer dropdown-toggle"
+              id="dropdownMenuButton"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <img src="{{ userAvatar }}" class="user-img img-fluid" />
+              <span class="text-label">Account</span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" (click)="onClickPruvitCloud()"
+                >Prüvit Cloud</a
+              >
+              <a class="dropdown-item" (click)="onLogout()">Log out</a>
+            </div>
           </li>
 
           <li class="nav-item">
@@ -589,11 +607,32 @@
         </a>
 
         <ul class="navbar-nav ml-md-auto text-right">
-          <li class="nav-item">
-            <a class="nav-link sk-header__nav-link" (click)="onClickUser()">
+          <li class="nav-item dropdown user-dropdown">
+            <a
+              *ngIf="!isUserLoggedIn"
+              class="nav-link sk-header__nav-link pointer"
+              (click)="onlogin()"
+            >
               <i class="far fa-user sk-header__user-card color-black"></i>
               <span class="text-label">Login</span>
             </a>
+            <a
+              *ngIf="isUserLoggedIn"
+              class="nav-link sk-header__nav-link pointer dropdown-toggle"
+              id="dropdownMenuButton"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <img src="{{ userAvatar }}" class="user-img img-fluid" />
+              <span class="text-label">Account</span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" (click)="onClickPruvitCloud()"
+                >Prüvit Cloud</a
+              >
+              <a class="dropdown-item" (click)="onLogout()">Log out</a>
+            </div>
           </li>
           <li class="nav-item">
             <a
