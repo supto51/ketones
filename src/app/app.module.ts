@@ -6,10 +6,11 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FacebookModule } from 'ngx-facebook';
+import { CustomerDashboardModule } from './customer-dashboard/customer-dashboard.module';
 import {
   TranslateCompiler,
   TranslateLoader,
-  TranslateModule,
+  TranslateModule
 } from '@ngx-translate/core';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
@@ -74,6 +75,7 @@ export class CustomeUrlSerializer implements UrlSerializer {
     StoreModule.forRoot(fromApps.appReducer),
     AppRoutingModule,
     ProductsModule,
+    CustomerDashboardModule,
     WildcartRoutingModule,
     SharedModule,
     CoreModule,
@@ -83,12 +85,12 @@ export class CustomeUrlSerializer implements UrlSerializer {
       defaultLanguage: 'en',
       compiler: {
         provide: TranslateCompiler,
-        useClass: PhraseAppCompiler,
-      },
-    }),
+        useClass: PhraseAppCompiler
+      }
+    })
   ],
   providers: [{ provide: UrlSerializer, useClass: CustomeUrlSerializer }],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
   constructor(@Inject(PLATFORM_ID) private platformId: PlatformRef) {

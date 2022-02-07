@@ -1,0 +1,151 @@
+<!-- <main class="sk-main">
+    <div class="container dashboard--container">
+      <div class="row">
+        <div class="col-lg-3">
+          <side-navigation></side-navigation>
+        </div>
+        <div class="col-lg-9">
+          <h2>Order history</h2>
+  
+          <div
+            class="dashboard__wrapper pending--wrapper"
+            *ngIf="pendingPaymentOrders?.length > 0"
+          >
+            <div
+              *ngFor="let order of pendingPaymentOrders; let i = index"
+              class="order__history__item"
+            >
+              <div class="order__information">
+                <div>
+                  <span class="order__name">Order</span>
+                  <span class="order__id"> #{{ order.cartId }}</span>
+                </div>
+                <div class="order__date">
+                  {{ order.date | date: "MMM d, h:mm:ss a" }} (RTZ)
+                </div>
+              </div>
+              <div class="order__options">
+                <span class="order__track" (click)="pay(order.cartId)"
+                  ><i class="fas fa-shopping-cart"></i> Pay now</span
+                >
+                <span class="pill pill--pending">
+                  <span>Pending payment</span>
+                </span>
+                <button
+                  mat-icon-button
+                  [matMenuTriggerFor]="menuOrders"
+                  aria-label="Example icon-button with a menu"
+                  class="button orders--button"
+                >
+                  <i class="fas fa-ellipsis-v"></i>
+                </button>
+                <mat-menu #menuOrders="matMenu" xPosition="before">
+                  <button class="mat-menu-item--custom" mat-menu-item>
+                    <i class="fas fa-pen"></i>
+                    <span>Edit order</span>
+                  </button>
+                  <button class="mat-menu-item--custom" mat-menu-item>
+                    <i class="fas fa-times-circle"></i>
+                    <span>Cancel order</span>
+                  </button>
+                  <button class="mat-menu-item--custom" mat-menu-item>
+                    <i class="far fa-repeat-alt"></i>
+                    <span>Add to Smartship</span>
+                  </button>
+                  <button class="mat-menu-item--custom" mat-menu-item>
+                    <i class="fas fa-question-circle"></i><span>Get help</span>
+                  </button>
+                </mat-menu>
+              </div>
+            </div>
+          </div>
+          <div class="dashboard__wrapper" *ngIf="orderHistory.length == 0">
+            <h3>No order history can be found</h3>
+          </div>
+          <div class="dashboard__wrapper" *ngIf="orderHistory.length > 1">
+            <div
+              *ngFor="let order of orderHistory; let i = index"
+              class="order__history__item"
+            >
+              <div class="order__information">
+                <div>
+                  <span class="order__name">{{ order.orderName }}</span>
+                  <span class="order__id"> #{{ order.orderId }}</span>
+                </div>
+                <div class="order__date">
+                  {{ order.dateCreated | date: "MMM d, h:mm:ss a" }} (RTZ)
+                </div>
+              </div>
+              <div class="order__options">
+                <span
+                  *ngIf="order.trackingNumberUrl"
+                  (click)="goToTracking(order.trackingNumberUrl)"
+                  class="order__track"
+                  ><i class="fas fa-box"></i> Track</span
+                >
+                <span *ngIf="order.shipStatus == 2" class="pill pill--fulfilment">
+                  <span>Fulfilment</span>
+                </span>
+  
+                <span *ngIf="order.shipStatus == 23" class="pill pill--delivered">
+                  <span>Delivered</span>
+                </span>
+  
+                <span *ngIf="order.shipStatus == 3" class="pill pill--awaiting">
+                  <span>Awaiting shipment</span>
+                </span>
+  
+                <span *ngIf="order.shipStatus == 10" class="pill pill--shipped">
+                  <span>Shipped</span>
+                </span>
+  
+                <span *ngIf="order.shipStatus == 27" class="pill pill--canceled">
+                  <span>Canceled</span>
+                </span>
+                <span
+                  *ngIf="order.shipStatus == 14"
+                  class="pill pill--returnedrefund"
+                >
+                  <span>Returned refund</span>
+                </span>
+                <button
+                  mat-icon-button
+                  [matMenuTriggerFor]="menuOrders"
+                  aria-label="Example icon-button with a menu"
+                  class="button orders--button"
+                >
+                  <i class="fas fa-ellipsis-v"></i>
+                </button>
+                <mat-menu #menuOrders="matMenu" xPosition="before">
+                  <button class="mat-menu-item--custom" mat-menu-item>
+                    <i class="fas fa-pen"></i>
+                    <span>Edit order</span>
+                  </button>
+                  <button class="mat-menu-item--custom" mat-menu-item>
+                    <i class="fas fa-times-circle"></i>
+                    <span>Cancel order</span>
+                  </button>
+                  <button class="mat-menu-item--custom" mat-menu-item>
+                    <i class="far fa-repeat-alt"></i>
+                    <span>Add to Smartship</span>
+                  </button>
+                  <button class="mat-menu-item--custom" mat-menu-item>
+                    <i class="fas fa-question-circle"></i><span>Get help</span>
+                  </button>
+                </mat-menu>
+              </div>
+            </div>
+            <button
+              *ngIf="orderHistory"
+              class="button button-primary older-olders"
+              (click)="loadMore()"
+              [disabled]="loadMoreLoading"
+            >
+              {{ loadMoreButton }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+   -->

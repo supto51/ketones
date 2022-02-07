@@ -6012,3 +6012,152 @@ button.sk-pruver__btn {
   height: 20px;
   margin-top: -6px;
 }
+
+/*Dashboard sidenavigation*/
+.dashboard__side__navigation ul {
+  list-style: none;
+}
+.dashboard__side__navigation ul li {
+  font-weight: 700;
+  text-transform: capitalize;
+  color: #131313;
+  font-family: acumin-pro, sans-serif;
+  border-radius: 12px;
+  padding: 10px 0px 10px 15px;
+  margin-bottom: 4px;
+  cursor: pointer;
+}
+
+.dashboard__side__navigation ul li.active-link {
+  background: rgba(196, 196, 196, 0.2);
+}
+.dashboard__side__navigation ul li:hover {
+  background: rgba(196, 196, 196, 0.2);
+}
+.dashboard__side__navigation ul li i {
+  color: #2152ff;
+  margin-right: 12px;
+}
+
+.dashboard__side__navigation .learning__center__menu li i {
+  color: #c419df;
+}
+
+.dashboard__side__navigation .learning__center__menu {
+  padding: 24px 0px;
+  border-top: 1px solid #c4c4c4;
+  border-bottom: 1px solid #c4c4c4;
+  margin: 30px 0px;
+}
+.dashboard__side__navigation .help__menu {
+  margin-bottom: 30px;
+}
+.dashboard__side__navigation .help__menu li i {
+  color: #919192;
+}
+
+.dashboard__side__navigation img {
+  width: 100%;
+}
+
+/*Order history*/
+
+.order__history__item {
+  padding: 20px 0px;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #c4c4c4;
+  width: 95%;
+  margin: 0 auto;
+}
+
+div.order__history__item:last-child {
+  border-bottom: none;
+}
+
+.order__history__item .order__name,
+.order__history__item .order__id {
+  text-transform: capitalize;
+  font-weight: 700;
+}
+
+.order__date {
+  font-size: 0.8em;
+}
+
+.order__options {
+  align-self: center;
+  position: relative;
+}
+
+.order__options .pill {
+  background-color: #60ce6b;
+  color: #fff;
+  border-radius: 20px;
+  padding: 5px 10px;
+  font-size: 0.6em;
+  font-weight: 700;
+  margin-right: 20px;
+}
+
+.order__options .pill.pill--shipped {
+  background-color: #dbeafe;
+  color: #2752ff;
+}
+
+.order__options .pill.pill--fulfilment {
+  background-color: #b400ff;
+  color: #fff;
+}
+
+.order__options .pill.pill--pending {
+  background-color: #ff9000;
+  color: #fff;
+}
+
+.older-olders {
+  width: 100%;
+  max-width: 96%;
+  margin: 30px auto 0px;
+  display: block;
+  font-family: acumin-pro, sans-serif;
+  letter-spacing: 0em;
+  text-transform: none;
+  background-color: #f0f1f2;
+  color: #121722 !important;
+}
+
+.older-olders:hover {
+  background-color: #e5e5e5;
+}
+
+.order__track {
+  color: #2752ff !important;
+  font-weight: 600;
+  font-size: 0.8em;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.order__track i {
+  margin-right: 4px;
+}
+.orders--button {
+  color: #212529;
+}
+.orders--button:focus {
+  outline: none;
+}
+.mat-menu-item.mat-menu-item--custom {
+  line-height: 30px;
+  height: 30px;
+}
+
+.mat-menu-item--custom i {
+  margin-right: 15px;
+}
+.mat-menu-item--custom:focus {
+  outline: none;
+}
