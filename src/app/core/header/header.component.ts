@@ -1242,8 +1242,12 @@ export class HeaderComponent implements OnInit {
 
       localStorage.removeItem('MVUser');
 
-      window.location.href = `${this.returningUrl}connect/endsession?id_token_hint=${idToken}
-      &post_logout_redirect_uri=${this.clientDomainURL}`;
+      window.location.href =
+        this.returningUrl +
+        'connect/endsession?id_token_hint=' +
+        idToken +
+        '&post_logout_redirect_uri=' +
+        encodeURIComponent(this.clientDomainURL);
     }
   }
 }
