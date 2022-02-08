@@ -1,3 +1,7 @@
+#### 1.0.16 - 08.02.2022
+
+- Smartship offer deployed
+
 #### 1.0.15 - 29.01.2022
 
 - Food: new changes merge
