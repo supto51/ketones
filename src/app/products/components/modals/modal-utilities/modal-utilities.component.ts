@@ -52,6 +52,8 @@ export class ModalUtilitiesComponent implements OnInit, OnDestroy {
   billing = 'annually';
   pulseProProduct: any = {};
   pulseProVariation: any[] = [];
+  offerForSmartship = false;
+  offerDiscount = 0;
   subscriptions: SubscriptionLike[] = [];
 
   constructor(
@@ -137,6 +139,10 @@ export class ModalUtilitiesComponent implements OnInit, OnDestroy {
               this.offer = offer;
               this.offerQuantity = 1;
               this.offerProduct = offer.product.product_info;
+              this.offerDiscount = 0;
+              this.offerForSmartship = offer.offer_on_smartship_only
+                ? offer.offer_on_smartship_only
+                : false;
 
               this.attribute1 = '';
               this.attribute2 = '';
@@ -527,11 +533,15 @@ export class ModalUtilitiesComponent implements OnInit, OnDestroy {
   }
 
   selectDelivery(productOrderType: any[]) {
-    if (productOrderType.length === 1) {
-      this.mvproductOrdertype = productOrderType[0].orderType;
+    if (this.offerForSmartship) {
+      this.mvproductOrdertype = 'ordertype_2';
     } else {
-      if (productOrderType.length !== 0) {
-        this.mvproductOrdertype = 'ordertype_3';
+      if (productOrderType.length === 1) {
+        this.mvproductOrdertype = productOrderType[0].orderType;
+      } else {
+        if (productOrderType.length !== 0) {
+          this.mvproductOrdertype = 'ordertype_3';
+        }
       }
     }
 
@@ -956,6 +966,8 @@ export class ModalUtilitiesComponent implements OnInit, OnDestroy {
       productStatus = true;
     }
 
+    this.offerDiscount = offerDiscount;
+
     return {
       price: this.getNumFormat(
         this.offerQuantity * this.getExchangedPrice(productPrice)
@@ -1058,6 +1070,8 @@ export class ModalUtilitiesComponent implements OnInit, OnDestroy {
         oneTime: this.getVariationDetails('ordertype_1').variationSku,
         everyMonth: this.getVariationDetails('ordertype_2').variationSku,
       };
+    } else if (orderType === 'ordertype_2') {
+      skuObject = { everyMonth: productSku };
     } else {
       skuObject = { oneTime: productSku };
     }
@@ -1315,6 +1329,23 @@ export class ModalUtilitiesComponent implements OnInit, OnDestroy {
     }
 
     return servingName;
+  }
+
+  getSavedPrice() {
+    const oneTimePrice = this.getOrderTypePrice('ordertype_1');
+    const everyMonthPrice = this.getOrderTypePrice('ordertype_2');
+
+    return +this.getNumFormat(
+      this.getExchangedPrice(
+        oneTimePrice - everyMonthPrice + this.offerDiscount
+      )
+    );
+  }
+
+  onTodaysOrderSelect(event: any) {
+    this.mvproductOrdertype = event.target.checked
+      ? 'ordertype_3'
+      : 'ordertype_2';
   }
 
   onClickAddToCart() {
