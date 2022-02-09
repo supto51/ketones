@@ -34,7 +34,6 @@ import { ModalFoodsComponent } from './foods/modals/modal-foods/modal-foods.comp
 import { Store } from '@ngrx/store';
 import { AppState } from './store/app.reducer';
 import { map } from 'rxjs/operators';
-import { FoodApiService } from './foods/services/food-api.service';
 import { FoodDelivery } from './foods/models/food-delivery.model';
 import { ModalPurchaseWarningComponent } from './shared/components/modal-purchase-warning/modal-purchase-warning.component';
 import { ModalZipComponent } from './foods/modals/modal-zip/modal-zip.component';
@@ -100,7 +99,6 @@ export class AppComponent implements OnInit {
     private productsApiService: ProductsApiService,
     private sidebarApiService: SidebarApiService,
     private seoService: AppSeoService,
-    private foodApiService: FoodApiService,
     private store: Store<AppState>,
     @Inject(DOCUMENT) private document: Document,
     @Inject(PLATFORM_ID) private platformId: PlatformRef
@@ -678,7 +676,7 @@ export class AppComponent implements OnInit {
       if (code !== null) {
         this.isCodePresent = true;
 
-        this.foodApiService.getUsers(this.selectedCountry, code).subscribe(
+        this.apiService.getUsers(this.selectedCountry, code).subscribe(
           (userData) => {
             if (
               !(
