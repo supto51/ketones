@@ -7,11 +7,11 @@ export const environment = {
   isStaging: true,
   userURL: 'https://demo.justpruvit.com/',
   checkoutURL: 'https://demo-opc.justpruvit.com/',
-  domainPath: 'https://api.shopketo.com',
+  domainPath: 'https://demo.shopketo.com',
   redirectURL: 'https://demo.justpruvit.com',
   clientID: 'pruvitdemoomicronclient',
   returningURL: 'https://account-demo.justpruvit.com/',
-  clientDomainURL: 'https://shopketo.mypruvit.com',
+  clientDomainURL: 'http://localhost:4200',
   phraseBase: 'https://api.phraseapp.com/api/v2/projects/',
   phraseAppId: 'dec2efdab93d62d55da009cb683a438a',
   phraseAppToken:
