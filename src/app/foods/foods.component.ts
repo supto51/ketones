@@ -78,6 +78,14 @@ export class FoodsComponent implements OnInit, OnDestroy {
       ) {
         this.foodUtilityService.redirectToMVLogin(this.router.url);
       } else {
+        const validUserSession = this.foodUtilityService.checkMVUser();
+
+        if (!validUserSession) {
+          localStorage.removeItem('MVUser');
+          localStorage.removeItem('Foods');
+          localStorage.removeItem('FoodDelivery');
+        }
+
         this.getFoodsWithCountry();
       }
     }
