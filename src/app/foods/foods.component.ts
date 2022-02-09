@@ -141,8 +141,10 @@ export class FoodsComponent implements OnInit, OnDestroy {
 
     if (autoshipFoods.length > 0) {
       foods = foods.map((food) => {
-        food.quantity = 0;
-        return food;
+        const tempFood = Object.assign({}, food);
+        tempFood.quantity = 0;
+
+        return tempFood;
       });
     }
 

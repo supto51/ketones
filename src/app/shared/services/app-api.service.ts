@@ -11,11 +11,37 @@ import { Blog } from 'src/app/blogs/models/blog.model';
 export class AppApiService {
   domainPath: string;
   phraseBase: string;
+  clientDomain: string;
   apiPath = 'wp-json/wp/pruvitnow/products';
+  usersPath = 'wp-json/wp/pruvitnow/mvuser-info';
 
   constructor(private http: HttpClient) {
     this.domainPath = environment.domainPath;
     this.phraseBase = environment.phraseBase;
+    this.clientDomain = environment.clientDomainURL;
+  }
+
+  getUsers(country: string, userCode?: string) {
+    let fullApiPath = '';
+
+    if (country.toLowerCase() === 'us') {
+      fullApiPath = this.domainPath + '/' + this.usersPath;
+    } else {
+      fullApiPath =
+        this.domainPath + '/' + country.toLowerCase() + '/' + this.usersPath;
+    }
+
+    if (userCode) {
+      fullApiPath =
+        fullApiPath +
+        '/?code=' +
+        userCode +
+        '&redirect_uri=' +
+        this.clientDomain +
+        '/';
+    }
+
+    return this.http.get<any>(fullApiPath);
   }
 
   getReferrer(refCode: string) {

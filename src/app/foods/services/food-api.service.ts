@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { combineLatest, Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
@@ -16,29 +16,11 @@ import { Food } from '../models/food.model';
 export class FoodApiService {
   domainPath: string;
   foodsPath = 'wp-json/wp/pruvitnow/food/items';
-  usersPath = 'wp-json/wp/pruvitnow/mvuser-info';
   zipCodePath = 'wp-json/wp/pruvitnow/food/availability';
   autoshipPath = 'wp-json/wp/pruvitnow/food/autoship/';
 
   constructor(private http: HttpClient, private dataService: AppDataService) {
     this.domainPath = environment.domainPath;
-  }
-
-  getUsers(country: string, userCode?: string) {
-    let fullApiPath = '';
-
-    if (country.toLowerCase() === 'us') {
-      fullApiPath = this.domainPath + '/' + this.usersPath;
-    } else {
-      fullApiPath =
-        this.domainPath + '/' + country.toLowerCase() + '/' + this.usersPath;
-    }
-
-    if (userCode) {
-      fullApiPath = fullApiPath + '/?code=' + userCode;
-    }
-
-    return this.http.get<any>(fullApiPath);
   }
 
   getSyncAutoshipData(
