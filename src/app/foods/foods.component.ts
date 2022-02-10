@@ -78,6 +78,14 @@ export class FoodsComponent implements OnInit, OnDestroy {
       ) {
         this.foodUtilityService.redirectToMVLogin(this.router.url);
       } else {
+        const validUserSession = this.foodUtilityService.checkMVUser();
+
+        if (!validUserSession) {
+          localStorage.removeItem('MVUser');
+          localStorage.removeItem('Foods');
+          localStorage.removeItem('FoodDelivery');
+        }
+
         this.getFoodsWithCountry();
       }
     }
@@ -141,8 +149,10 @@ export class FoodsComponent implements OnInit, OnDestroy {
 
     if (autoshipFoods.length > 0) {
       foods = foods.map((food) => {
-        food.quantity = 0;
-        return food;
+        const tempFood = Object.assign({}, food);
+        tempFood.quantity = 0;
+
+        return tempFood;
       });
     }
 

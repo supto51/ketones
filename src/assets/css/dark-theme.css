@@ -948,3 +948,19 @@ body.dark-theme,
   .disclaimer-bold {
   color: #fff;
 }
+
+.dark-theme .sk-header .nav-item.user-dropdown .dropdown-menu {
+  border-color: #1c1c1e;
+}
+
+.dark-theme .sk-header .nav-item.user-dropdown .dropdown-menu .dropdown-item {
+  color: #fff;
+}
+
+.dark-theme
+  .sk-header
+  .nav-item.user-dropdown
+  .dropdown-menu
+  .dropdown-item:hover {
+  color: #2152ff;
+}
