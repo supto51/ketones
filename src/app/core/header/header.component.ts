@@ -126,6 +126,8 @@ export class HeaderComponent implements OnInit {
           this.isUserLoggedIn = false;
 
           localStorage.removeItem('MVUser');
+          localStorage.removeItem('Foods');
+          localStorage.removeItem('FoodDelivery');
         }, timeLeft);
       }
     }
@@ -1241,6 +1243,8 @@ export class HeaderComponent implements OnInit {
       const idToken = FoodUser.id_token;
 
       localStorage.removeItem('MVUser');
+      localStorage.removeItem('Foods');
+      localStorage.removeItem('FoodDelivery');
 
       window.location.href =
         this.returningUrl +
