@@ -18,6 +18,7 @@ export const environment = {
     'token 0864c626e7cd21f38c5ecc958c9ab0998fe0a586647f61b2febedfa08ea2808f',
   shaSalt: 'QM=5LGFkAczk',
   foodCheckoutUrl: 'https://demo-opc.justpruvit.com/',
+  newgenUrl: 'https://demo.justpruvit.com/api'
 };
 
 /*

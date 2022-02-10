@@ -14,4 +14,5 @@ export const environment = {
     'token 98b16648a3a885dcb8bab72744c3081aa315322dbb8d0a52ddf0110e57e897e8',
   shaSalt: '62MsF98S3KPI',
   foodCheckoutUrl: 'https://checkout.justpruvit.com/',
+  newgenUrl: 'https://demo.justpruvit.com/api'
 };
