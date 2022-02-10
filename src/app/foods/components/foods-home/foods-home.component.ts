@@ -91,15 +91,15 @@ export class FoodsHomeComponent implements OnInit, AfterViewInit, OnDestroy {
         .subscribe((foods: Food[]) => {
           this.foods = foods;
 
-          $(document).ready(() => {
-            loadTypeText();
-          });
-
           if (this.foods.length > 0) {
             setTimeout(() => {
               foodLandSlide();
             }, 0);
           }
+
+          $(document).ready(() => {
+            loadTypeText();
+          });
         })
     );
   }
