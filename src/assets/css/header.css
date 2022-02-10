@@ -609,7 +609,9 @@ body.navbar-show .navbar-overlay {
   width: 24px;
   height: 24px;
   border-radius: 50px;
+  -o-object-fit: cover;
   object-fit: cover;
+  margin-top: -5px;
 }
 
 .sk-header .nav-item.user-dropdown .dropdown-toggle::after {
@@ -635,4 +637,12 @@ body.navbar-show .navbar-overlay {
   background: transparent;
   color: #2152ff;
   cursor: pointer;
+}
+
+@media only screen and (max-width: 767px) {
+  .sk-header .sk-header__nav-link.nav-link .user-img {
+    width: 22px;
+    height: 22px;
+    margin-top: -4px;
+  }
 }
