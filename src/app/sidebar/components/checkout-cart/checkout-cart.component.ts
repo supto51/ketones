@@ -21,9 +21,8 @@ import { AppState } from 'src/app/store/app.reducer';
 import { FoodDelivery } from 'src/app/foods/models/food-delivery.model';
 import { SetFoodDeliveryActon } from 'src/app/foods/store/foods-list.actions';
 import { FoodUtilityService } from 'src/app/foods/services/food-utility.service';
-import { FoodCart } from 'src/app/foods/models/food-cart.model';
-import * as cryptojs from 'crypto-js';
 import { Food } from 'src/app/foods/models/food.model';
+import { AppCheckoutService } from 'src/app/shared/services/app-checkout.service';
 declare var $: any;
 
 @Component({
@@ -91,6 +90,7 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit, OnDestroy {
     private sidebarDataService: SidebarDataService,
     private sidebarApiService: SidebarApiService,
     private foodUtilityService: FoodUtilityService,
+    private appCheckoutService: AppCheckoutService,
     private store: Store<AppState>
   ) {
     this.isStaging = environment.isStaging;
@@ -204,7 +204,7 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit, OnDestroy {
 
         this.removeCartTotalOfferIfNotMet();
 
-        this.setModals();
+        this.appCheckoutService.setModals();
         this.dataService.setIsCheckoutStatus(false);
       }
     });
@@ -2039,173 +2039,13 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onClickFoodCheckout() {
-    // use checkout service
-    this.dataService.setIsCheckoutFromFoodStatus(true);
-
-    if (this.foodDelivery.totalItems !== 0) {
-      const LocalMVUser = localStorage.getItem('MVUser');
-      const FoodUser = LocalMVUser ? JSON.parse(LocalMVUser) : null;
-
-      const LocalCartTime = localStorage.getItem('CartTime');
-      const cartStorageValue = LocalCartTime ? JSON.parse(LocalCartTime) : null;
-      const currentTime = new Date().getTime();
-      const timeDifference = (currentTime - cartStorageValue) / 1000;
-
-      const LocalVIUser = localStorage.getItem('ViUser');
-      const viUser = LocalVIUser ? JSON.parse(LocalVIUser) : null;
-
-      if (viUser !== null) {
-        this.setFoodCheckoutUrl(
-          viUser.referrer,
-          false,
-          viUser.promptLogin,
-          viUser.viCode
-        );
-      } else {
-        if (cartStorageValue !== null) {
-          if (FoodUser !== null) {
-            if (timeDifference > FoodUser.token_expire_time) {
-              localStorage.removeItem('MVUser');
-              localStorage.removeItem('Foods');
-              localStorage.removeItem('FoodDelivery');
-
-              this.sidebarDataService.setShortenedUrlLink('');
-              this.setModals();
-            } else {
-              const autoshipFoods: { sku: string; quantity: number }[] =
-                FoodUser === null ||
-                (Object.keys(FoodUser).length === 0 &&
-                  FoodUser.constructor === Object)
-                  ? []
-                  : FoodUser.food_autoship_data;
-
-              if (autoshipFoods.length !== 0 || FoodUser.isEditSelections) {
-                this.setFoodCheckoutUrl(
-                  FoodUser.mvuser_refCode,
-                  true,
-                  'true',
-                  ''
-                );
-              } else {
-                this.setFoodCheckoutUrl(
-                  FoodUser.mvuser_refCode,
-                  false,
-                  'true',
-                  ''
-                );
-              }
-            }
-          } else {
-            localStorage.removeItem('MVUser');
-            localStorage.removeItem('Foods');
-            localStorage.removeItem('FoodDelivery');
-
-            this.sidebarDataService.setShortenedUrlLink('');
-            this.setModals();
-          }
-        } else {
-          localStorage.removeItem('MVUser');
-          localStorage.removeItem('Foods');
-          localStorage.removeItem('FoodDelivery');
-
-          this.sidebarDataService.setShortenedUrlLink('');
-          this.setModals();
-        }
-      }
-    }
-  }
-
-  setFoodCheckoutUrl(
-    refCode: string,
-    isAutoshipFoods: boolean,
-    promptLogin: string,
-    viCode: string
-  ) {
-    let checkoutLink = '';
-
-    let foodSkus = '';
-
-    const LocalCheckoutFoods = localStorage.getItem('CheckoutFoods');
-    let CheckoutFoods: FoodCart[] = LocalCheckoutFoods
-      ? JSON.parse(LocalCheckoutFoods)
-      : null;
-    if (!CheckoutFoods) {
-      CheckoutFoods = [];
-    }
-
-    if (!isAutoshipFoods) {
-      CheckoutFoods.forEach((food: FoodCart, index: any) => {
-        foodSkus += food.food.sku + '-ONCE' + ':' + food.food.quantity;
-        if (CheckoutFoods.length - 1 !== index) {
-          foodSkus += ',';
-        }
-      });
-    } else {
-      CheckoutFoods.forEach((food: FoodCart, index: any) => {
-        foodSkus += food.food.sku + '-RENEW' + ':' + food.food.quantity;
-        if (CheckoutFoods.length - 1 !== index) {
-          foodSkus += ',';
-        }
-      });
-    }
-
-    checkoutLink =
-      this.foodCheckoutURL +
-      refCode +
-      '?products=' +
-      foodSkus +
-      '&country=' +
-      this.selectedCountry.toLowerCase() +
-      '&catalog=sunbasket' +
-      '&redirect_url=' +
-      this.redirectURL +
-      '&language=' +
-      this.selectedLanguage +
-      '&gaCode=' +
-      this.gaCode +
-      '&fbCode=' +
-      this.fbCode +
-      '&googleConversionId=' +
-      this.googleConversionId +
-      '&googleConversionLabel=' +
-      this.googleConversionLabel +
-      '&promptLogin=' +
-      promptLogin;
-
-    checkoutLink =
-      viCode !== '' ? checkoutLink + '&vicode=' + viCode : checkoutLink;
-
-    const hash = cryptojs
-      .SHA256(checkoutLink + this.sha256Salt)
-      .toString(cryptojs.enc.Hex)
-      .toUpperCase();
-
-    checkoutLink += '&hash=' + hash;
-
-    const height = 760;
-    const width = 500;
-    const leftPosition = window.innerWidth / 2 - width / 2;
-    const topPosition =
-      window.innerHeight / 2 -
-      height / 2 +
-      (window.outerHeight - window.innerHeight);
-
-    window.open(
-      checkoutLink,
-      'checkoutWindowRef',
-      'status=no,height=' +
-        height +
-        ',width=' +
-        width +
-        ',resizable=yes,left=' +
-        leftPosition +
-        ',top=' +
-        topPosition +
-        ',screenX=' +
-        leftPosition +
-        ',screenY=' +
-        topPosition +
-        ',toolbar=no,menubar=no,scrollbars=no,location=no,directories=no'
+    this.appCheckoutService.checkoutFood(
+      this.selectedCountry,
+      this.selectedLanguage,
+      this.gaCode,
+      this.fbCode,
+      this.googleConversionId,
+      this.googleConversionLabel
     );
   }
 
@@ -2288,7 +2128,7 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit, OnDestroy {
             MVUser.constructor === Object)
         ) {
           this.sidebarDataService.setShortenedUrlLink('');
-          this.setModals();
+          this.appCheckoutService.setModals();
         } else {
           let refCode = MVUser ? MVUser.mvuser_refCode : this.refCode;
 
@@ -2341,43 +2181,6 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       }
     }
-  }
-
-  setModals() {
-    const modals = [];
-    let referrerModal = '';
-
-    if (this.isStaging) {
-      this.subscriptions.push(
-        this.route.queryParamMap.subscribe((params) => {
-          const refCode = params.get('ref');
-          if (refCode !== null) {
-            this.subscriptions.push(
-              this.dataService.currentReferrerData.subscribe(
-                (referrer: any) => {
-                  if (referrer) {
-                    referrerModal = 'referrerBy';
-                  }
-                }
-              )
-            );
-          } else {
-            referrerModal = 'referrerCode';
-          }
-        })
-      );
-    } else {
-      if (this.refCode !== '') {
-        referrerModal = 'referrerBy';
-      } else {
-        referrerModal = 'referrerCode';
-      }
-    }
-
-    modals.push({ modalName: referrerModal });
-
-    this.sidebarDataService.changeCartOrCheckoutModal('checkout');
-    this.dataService.changeModals(modals);
   }
 
   setProductSkus() {

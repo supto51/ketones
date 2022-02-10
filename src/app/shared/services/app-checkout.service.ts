@@ -264,6 +264,10 @@ export class AppCheckoutService implements OnDestroy {
       );
     }
 
+    if (referrerModal === '') {
+      referrerModal = 'referrerCode';
+    }
+
     modals.push({ modalName: referrerModal });
 
     this.sidebarDataService.changeCartOrCheckoutModal('checkout');
