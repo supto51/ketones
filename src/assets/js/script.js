@@ -245,7 +245,7 @@ const foodLandSlide = () => {
   });
 };
 
-function typeWrite() {
+function loadTypeText() {
   var app = document.getElementById("typeWrite");
 
   var typewriter = new Typewriter(app, {
@@ -254,12 +254,12 @@ function typeWrite() {
 
   typewriter
     .typeString("ketones")
-    .pauseFor(2500)
+    .pauseFor(1500)
     .deleteAll()
     .typeString("food")
-    .pauseFor(2500)
-    .deleteChars(7)
+    .pauseFor(1500)
+    .deleteAll()
     .typeString("community")
-    .pauseFor(2500)
+    .pauseFor(1500)
     .start();
 }

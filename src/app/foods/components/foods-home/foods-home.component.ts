@@ -16,7 +16,6 @@ import { Food } from '../../models/food.model';
 declare var $: any;
 declare var foodLandSlide: any;
 declare var loadTypeText: any;
-declare var typeWrite: any;
 
 @Component({
   selector: 'app-foods-home',
@@ -93,7 +92,7 @@ export class FoodsHomeComponent implements OnInit, AfterViewInit, OnDestroy {
           this.foods = foods;
 
           $(document).ready(() => {
-            typeWrite();
+            loadTypeText();
           });
 
           if (this.foods.length > 0) {
