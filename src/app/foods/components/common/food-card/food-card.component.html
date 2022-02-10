@@ -1,8 +1,9 @@
 <div class="card">
   <div
+    [attr.data-toggle]="!isStartPlanning ? 'modal' : ''"
+    [attr.data-target]="!isStartPlanning ? '#foodDetailsModal' : ''"
     class="top-img"
-    data-toggle="modal"
-    data-target="#foodDetailsModal"
+    [ngStyle]="{ cursor: isStartPlanning ? 'default' : 'pointer' }"
     (click)="onClickFoodImage(food.id)"
   >
     <div

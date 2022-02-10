@@ -245,3 +245,21 @@ const foodLandSlide = () => {
   });
 };
 
+function loadTypeText() {
+  var app = document.getElementById("typeWrite");
+
+  var typewriter = new Typewriter(app, {
+    loop: true,
+  });
+
+  typewriter
+    .typeString("ketones")
+    .pauseFor(1500)
+    .deleteAll()
+    .typeString("food")
+    .pauseFor(1500)
+    .deleteAll()
+    .typeString("community")
+    .pauseFor(1500)
+    .start();
+}

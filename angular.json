@@ -64,8 +64,8 @@
               "src/assets/js/blog.js",
               "src/assets/js/aos.js",
               "src/assets/js/research.js",
-              "src/assets/js/script.js",
-              "src/assets/js/typetext.js"
+              "src/assets/js/typetext.js",
+              "src/assets/js/script.js"
             ],
             "vendorChunk": true,
             "extractLicenses": false,

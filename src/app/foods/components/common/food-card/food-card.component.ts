@@ -77,7 +77,9 @@ export class FoodCardComponent implements OnInit, OnDestroy {
   }
 
   onClickFoodImage(id: string) {
-    this.store.dispatch(new SetFoodModalNameActon(id));
+    if (!this.isStartPlanning) {
+      this.store.dispatch(new SetFoodModalNameActon(id));
+    }
   }
 
   onClickMinus() {
