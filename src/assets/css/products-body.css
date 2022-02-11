@@ -553,8 +553,8 @@
 }
 
 .broth-skin-wraper .broth-skin-bg {
-  background: url(/assets/images/broth-skin-acti-bg2.png) no-repeat left top/auto
-    100%;
+  background: url(/assets/images/broth-skin-acti-bg2.png) no-repeat left
+    top/auto 100%;
   padding: 68px 20px;
 }
 
@@ -934,8 +934,8 @@
 
 /*---End of MCTProduct-suggested-uses---*/
 .MCTProduct-mary-banner {
-  background: white url("/assets/images/MCT-mary-banner-bg.png") no-repeat scroll
-    center center/cover;
+  background: white url("/assets/images/MCT-mary-banner-bg.png") no-repeat
+    scroll center center/cover;
   padding: 70px 20px;
 }
 
@@ -2182,6 +2182,9 @@
   display: flex;
   justify-content: center;
   margin-top: 30px;
+  flex-wrap: wrap;
+  margin-left: 0;
+  padding: 0 20px;
 }
 
 .product-lineup-wrap .product-lineup-items .product-lineup-item-right ul li {
@@ -4142,13 +4145,14 @@ section.block.reset-your-metabolism-wrap {
 
 /*---End of .ketoKalm-why-wrap---*/
 .ketoKalm-whatdoesIt-wrap {
-  background: #f2f2f2 url("/assets/images/what-does-itdo-bg.png") no-repeat right
-    top/auto 100%;
+  background: #f2f2f2 url("/assets/images/what-does-itdo-bg.png") no-repeat
+    right top/auto 100%;
   padding: 110px 0 230px;
 }
 
 .ketoKalm-whatdoesIt-wrap article.container {
-  background: url("/assets/images/purpose-img.png") no-repeat left top/540px auto;
+  background: url("/assets/images/purpose-img.png") no-repeat left top/540px
+    auto;
 }
 
 .ketoKalm-whatdoesIt-wrap article.container .whatdoes-wrap {
