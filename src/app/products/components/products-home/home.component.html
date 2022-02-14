@@ -1,10 +1,13 @@
-<main class="sk-main" *ngIf="isCountryAvailable; else notFound"
-  [style.margin-top.px]="discountHeight">
+<main
+  class="sk-main"
+  *ngIf="isCountryAvailable; else notFound"
+  [style.margin-top.px]="discountHeight"
+>
   <app-banner-slider></app-banner-slider>
   <app-categories-list></app-categories-list>
   <app-tags-list></app-tags-list>
+  <app-trending></app-trending>
 </main>
-
 
 <ng-template #notFound>
   <app-error404></app-error404>
