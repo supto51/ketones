@@ -6013,6 +6013,9 @@ button.sk-pruver__btn {
   margin-top: -6px;
 }
 
+.dashboard--container {
+  margin-bottom: 60px;
+}
 /*Dashboard sidenavigation*/
 .dashboard__side__navigation ul {
   list-style: none;
