@@ -37,6 +37,9 @@ import { map } from 'rxjs/operators';
 import { FoodDelivery } from './foods/models/food-delivery.model';
 import { ModalPurchaseWarningComponent } from './shared/components/modal-purchase-warning/modal-purchase-warning.component';
 import { ModalZipComponent } from './foods/modals/modal-zip/modal-zip.component';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
+import { NewgenApiService } from 'src/app/shared/services/newgen-api.service';
+import { UserEmitterService } from 'src/app/shared/services/user-emitter.service';
 declare var $: any;
 
 const config = {
@@ -83,6 +86,7 @@ export class AppComponent implements OnInit {
   isBrowser: boolean;
 
   constructor(
+    public oidcSecurityService: OidcSecurityService,
     private apiService: AppApiService,
     private dataService: AppDataService,
     private route: ActivatedRoute,
@@ -100,9 +104,20 @@ export class AppComponent implements OnInit {
     private sidebarApiService: SidebarApiService,
     private seoService: AppSeoService,
     private store: Store<AppState>,
+    private newgenApiService: NewgenApiService,
+    private userEmitterService: UserEmitterService,
     @Inject(DOCUMENT) private document: Document,
     @Inject(PLATFORM_ID) private platformId: PlatformRef
   ) {
+    this.oidcSecurityService.checkAuth().subscribe((isAuthenticated) => {
+      if (isAuthenticated) {
+        this.newgenApiService.getPersonal().subscribe((x) => {
+          let user = x.collection[0];
+          this.userEmitterService.setProfileObs(user);
+        });
+      }
+      console.log('app authenticated', isAuthenticated);
+    });
     this.production = environment.production;
     this.isStaging = environment.isStaging;
     this.clientDomain = environment.clientDomainURL;

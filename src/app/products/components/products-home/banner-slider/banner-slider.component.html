@@ -3,13 +3,15 @@
     <div class="sk-main__title text-center">
       <h4 class="color-black sk-main__title-b" *ngIf="isReferrerPresent">
         <img
-          [src]="[
-            referrer.imageUrl ? referrer.imageUrl : 'assets/images/avatar2.png'
-          ]"
+          [src]="
+            referrer?.imageUrl
+              ? referrer?.imageUrl
+              : 'assets/images/avatar2.png'
+          "
           class="referr-img"
           alt=""
         />
-        {{ "Invited by" }}
+        Invited by
         <span class="color-brand link-hover" (click)="onClickReferrerName()">{{
           referrer?.name
         }}</span>

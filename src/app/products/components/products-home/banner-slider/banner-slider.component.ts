@@ -83,7 +83,6 @@ export class BannerSliderComponent implements OnInit, OnDestroy {
                   if (referrer) {
                     this.referrer = referrer;
                     this.isReferrerPresent = true;
-                    console.log(this.referrer);
                   }
                 }
               )

@@ -12,9 +12,16 @@
             ingredients, ready in 5 minutes or less.
           </p>
 
-          <a class="button" routerLink="food/select/">Explore menu</a>
+          <a
+            class="button"
+            [routerLink]="['/food/select']"
+            [queryParams]="language !== 'en' ? { lang: language } : {}"
+            >Explore menu</a
+          >
           <h4 class="text-center">
-            <a routerLink="food"
+            <a
+              [routerLink]="['/food']"
+              [queryParams]="language !== 'en' ? { lang: language } : {}"
               ><i class="far fa-info-circle"></i> Learn more</a
             >
           </h4>

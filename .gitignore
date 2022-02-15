@@ -45,3 +45,8 @@ testem.log
 .DS_Store
 Thumbs.db
 .angular/cache
+
+# Certificates
+*.pfx
+*.crt
+*.key

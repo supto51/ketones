@@ -13,7 +13,7 @@ import { SidebarApiService } from '../sidebar/services/sidebar-api.service';
 import { ProductsApiService } from '../products/services/products-api.service';
 import { FoodUtilityService } from '../foods/services/food-utility.service';
 import { FoodApiService } from '../foods/services/food-api.service';
-
+import { NgInterceptorService } from './interceptors/ng-interceptor.service';
 @NgModule({
   declarations: [HeaderComponent, FooterComponent],
   imports: [SharedModule],
@@ -29,11 +29,16 @@ import { FoodApiService } from '../foods/services/food-api.service';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorResponseInterceptor,
-      multi: true,
+      multi: true
     },
     { provide: HTTP_INTERCEPTORS, useClass: BlogInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: PhraseInterceptor, multi: true },
-  ],
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: NgInterceptorService,
+      multi: true
+    }
+  ]
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

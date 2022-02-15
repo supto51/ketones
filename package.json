@@ -43,6 +43,7 @@
     "ngx-clipboard": "14.0.1",
     "ngx-facebook": "^3.0.0-0",
     "ngx-translate-phraseapp": "^0.4.2",
+    "angular-auth-oidc-client": "^11.0.15",
     "rxjs": "~6.5.4",
     "slick-carousel": "^1.8.1",
     "tslib": "^1.10.0",
