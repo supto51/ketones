@@ -11,6 +11,7 @@ import { LottiePlayerDirective } from './directives/lottie-player.directive';
 import { ModalPurchaseWarningComponent } from './components/modal-purchase-warning/modal-purchase-warning.component';
 import { FormatPipe } from './pipes/format-string.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -22,9 +23,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SearchBlogPipe,
     LottiePlayerDirective,
     ModalPurchaseWarningComponent,
-    FormatPipe,
+    FormatPipe
   ],
-  imports: [CommonModule, TranslateModule],
+  imports: [CommonModule, TranslateModule, MatMenuModule],
   exports: [
     Error404Component,
     TextSanitizerPipe,
@@ -39,6 +40,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     TranslateModule,
-  ],
+    MatMenuModule
+  ]
 })
 export class SharedModule {}

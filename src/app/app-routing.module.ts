@@ -9,123 +9,130 @@ import { BlogsModule } from './blogs/blogs.module';
 import { IncomeRedirectModule } from './income-redirect/income-redirect.module';
 import { ResearchModule } from './research/research.module';
 import { IngredientModule } from './ingredients/ingredient.module';
+import { ImplicitModule } from './implicit/implicit.module';
 import { FoodsModule } from './foods/foods.module';
 
 const routes: Routes = [
   {
     path: 'food',
-    loadChildren: () => FoodsModule,
+    loadChildren: () => FoodsModule
   },
   {
     path: 'research',
-    loadChildren: () => ResearchModule,
+    loadChildren: () => ResearchModule
   },
   {
     path: 'ca/research',
-    loadChildren: () => ResearchModule,
+    loadChildren: () => ResearchModule
   },
 
   {
     path: 'blog',
-    loadChildren: () => BlogsModule,
+    loadChildren: () => BlogsModule
   },
   {
     path: 'ca/blog',
-    loadChildren: () => BlogsModule,
+    loadChildren: () => BlogsModule
   },
 
   {
     path: 'ingredients',
-    loadChildren: () => IngredientModule,
+    loadChildren: () => IngredientModule
   },
   {
     path: ':id/ingredients',
-    loadChildren: () => IngredientModule,
+    loadChildren: () => IngredientModule
   },
 
   {
     path: 'shipping',
-    loadChildren: () => ShippingRedirectModule,
+    loadChildren: () => ShippingRedirectModule
   },
   {
     path: ':id/shipping',
-    loadChildren: () => ShippingRedirectModule,
+    loadChildren: () => ShippingRedirectModule
   },
   {
     path: 'shipping-policy',
-    loadChildren: () => ShippingRedirectModule,
+    loadChildren: () => ShippingRedirectModule
   },
   {
     path: ':id/shipping-policy',
-    loadChildren: () => ShippingRedirectModule,
+    loadChildren: () => ShippingRedirectModule
   },
 
   {
     path: 'terms',
-    loadChildren: () => TermsRedirectModule,
+    loadChildren: () => TermsRedirectModule
   },
   {
     path: ':id/terms',
-    loadChildren: () => TermsRedirectModule,
+    loadChildren: () => TermsRedirectModule
   },
 
   {
     path: 'privacy',
-    loadChildren: () => PrivacyRedirectModule,
+    loadChildren: () => PrivacyRedirectModule
   },
   {
     path: ':id/privacy',
-    loadChildren: () => PrivacyRedirectModule,
+    loadChildren: () => PrivacyRedirectModule
   },
 
   {
     path: 'refund',
-    loadChildren: () => RefundRedirectModule,
+    loadChildren: () => RefundRedirectModule
   },
   {
     path: ':id/refund',
-    loadChildren: () => RefundRedirectModule,
+    loadChildren: () => RefundRedirectModule
   },
   {
     path: 'refunds',
-    loadChildren: () => RefundRedirectModule,
+    loadChildren: () => RefundRedirectModule
   },
   {
     path: ':id/refunds',
-    loadChildren: () => RefundRedirectModule,
+    loadChildren: () => RefundRedirectModule
   },
 
   {
     path: 'policies',
-    loadChildren: () => ProceduresRedirectModule,
+    loadChildren: () => ProceduresRedirectModule
+  },
+  {
+    path: 'implicit',
+    loadChildren: () => ImplicitModule
   },
   {
     path: ':id/policies',
-    loadChildren: () => ProceduresRedirectModule,
+    loadChildren: () => ProceduresRedirectModule
   },
   {
     path: 'policies-and-procedures',
-    loadChildren: () => ProceduresRedirectModule,
+    loadChildren: () => ProceduresRedirectModule
   },
   {
     path: ':id/policies-and-procedures',
-    loadChildren: () => ProceduresRedirectModule,
+    loadChildren: () => ProceduresRedirectModule
   },
 
   {
     path: 'income-disclaimer',
-    loadChildren: () => IncomeRedirectModule,
+    loadChildren: () => IncomeRedirectModule
   },
   {
     path: ':id/income-disclaimer',
-    loadChildren: () => IncomeRedirectModule,
-  },
+    loadChildren: () => IncomeRedirectModule
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    initialNavigation: 'enabledBlocking'
-})],
-  exports: [RouterModule],
+  imports: [
+    RouterModule.forRoot(routes, {
+      initialNavigation: 'enabledBlocking'
+    })
+  ],
+  exports: [RouterModule]
 })
 export class AppRoutingModule {}

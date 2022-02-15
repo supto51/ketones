@@ -10,7 +10,7 @@ import {
   Renderer2,
   Inject,
   PLATFORM_ID,
-  PlatformRef,
+  PlatformRef
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalProductsComponent } from './products/components/modals/modal-products/modal-products.component';
@@ -37,6 +37,9 @@ import { map } from 'rxjs/operators';
 import { FoodDelivery } from './foods/models/food-delivery.model';
 import { ModalPurchaseWarningComponent } from './shared/components/modal-purchase-warning/modal-purchase-warning.component';
 import { ModalZipComponent } from './foods/modals/modal-zip/modal-zip.component';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
+import { NewgenApiService } from 'src/app/shared/services/newgen-api.service';
+import { UserEmitterService } from 'src/app/shared/services/user-emitter.service';
 declare var $: any;
 
 const config = {
@@ -44,13 +47,13 @@ const config = {
   phraseEnabled: true,
   prefix: '[[__',
   suffix: '__]]',
-  fullReparse: true,
+  fullReparse: true
 };
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
   @ViewChild('modalcontainer', { read: ViewContainerRef })
@@ -83,6 +86,7 @@ export class AppComponent implements OnInit {
   isBrowser: boolean;
 
   constructor(
+    public oidcSecurityService: OidcSecurityService,
     private apiService: AppApiService,
     private dataService: AppDataService,
     private route: ActivatedRoute,
@@ -100,9 +104,20 @@ export class AppComponent implements OnInit {
     private sidebarApiService: SidebarApiService,
     private seoService: AppSeoService,
     private store: Store<AppState>,
+    private newgenApiService: NewgenApiService,
+    private userEmitterService: UserEmitterService,
     @Inject(DOCUMENT) private document: Document,
     @Inject(PLATFORM_ID) private platformId: PlatformRef
   ) {
+    this.oidcSecurityService.checkAuth().subscribe(isAuthenticated => {
+      if (isAuthenticated) {
+        this.newgenApiService.getPersonal().subscribe(x => {
+          let user = x.collection[0];
+          this.userEmitterService.setProfileObs(user);
+        });
+      }
+      console.log('app authenticated', isAuthenticated);
+    });
     this.production = environment.production;
     this.isStaging = environment.isStaging;
     this.clientDomain = environment.clientDomainURL;
@@ -161,8 +176,9 @@ export class AppComponent implements OnInit {
   }
 
   setPhraseEditor() {
-    const translateMode: any =
-      this.utilityService.getUrlParameter('phrase_context');
+    const translateMode: any = this.utilityService.getUrlParameter(
+      'phrase_context'
+    );
 
     if (translateMode !== false) {
       initializePhraseAppEditor(config);
@@ -186,7 +202,7 @@ export class AppComponent implements OnInit {
       }
       window
         .matchMedia('(prefers-color-scheme: dark)')
-        .addEventListener('change', (e) => {
+        .addEventListener('change', e => {
           const newColorScheme = e.matches ? 'dark' : 'light';
 
           if (newColorScheme === 'dark') {
@@ -376,7 +392,7 @@ export class AppComponent implements OnInit {
       FoodDeliveryInfo = {
         totalItems: 0,
         totalPrice: 0,
-        appliedDiscount: 0,
+        appliedDiscount: 0
       } as FoodDelivery;
     }
 
@@ -393,7 +409,7 @@ export class AppComponent implements OnInit {
   }
 
   getQueryParams() {
-    this.route.queryParamMap.subscribe((params) => {
+    this.route.queryParamMap.subscribe(params => {
       const refCode = params.get('ref');
 
       if (refCode !== null && this.isStaging) {
@@ -657,7 +673,7 @@ export class AppComponent implements OnInit {
     let redirectUrl = '';
     let isEditSelections = false;
 
-    this.route.queryParamMap.subscribe((params) => {
+    this.route.queryParamMap.subscribe(params => {
       const code = params.get('code');
       const state = params.get('state');
 
@@ -677,7 +693,7 @@ export class AppComponent implements OnInit {
         this.isCodePresent = true;
 
         this.apiService.getUsers(this.selectedCountry, code).subscribe(
-          (userData) => {
+          userData => {
             if (
               !(
                 userData.user_info &&
@@ -737,7 +753,7 @@ export class AppComponent implements OnInit {
   }
 
   getSidebarName() {
-    this.sidebarDataService.currentSidebarName.subscribe((name) => {
+    this.sidebarDataService.currentSidebarName.subscribe(name => {
       this.sidebarName = name;
 
       if (name === '') {
@@ -804,7 +820,7 @@ export class AppComponent implements OnInit {
   createCurrentFoodModal() {
     this.store
       .select('foodsList')
-      .pipe(map((res) => res.modalId))
+      .pipe(map(res => res.modalId))
       .subscribe((id: string) => {
         if (id !== '') {
           if (this.currentModalId !== id) {
@@ -878,7 +894,7 @@ export class AppComponent implements OnInit {
   setFbChat() {
     const initParams: InitParams = {
       xfbml: true,
-      version: 'v3.2',
+      version: 'v3.2'
     };
     if (this.isBrowser) {
       setTimeout(() => {

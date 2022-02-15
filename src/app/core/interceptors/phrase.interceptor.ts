@@ -5,7 +5,7 @@ import {
   HttpEvent,
   HttpInterceptor,
   HttpHeaders,
-  HttpErrorResponse,
+  HttpErrorResponse
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -27,10 +27,10 @@ export class PhraseInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     const headers = {
-      Authorization: environment.phraseAppToken,
+      Authorization: environment.phraseAppToken
     };
     const modifiedRequest = request.clone({
-      headers: new HttpHeaders(headers),
+      headers: new HttpHeaders(headers)
     });
     if (request.url.includes(environment.phraseBase)) {
       return next.handle(modifiedRequest).pipe(
