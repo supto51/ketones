@@ -1,3 +1,7 @@
+#### 1.0.17 - 15.02.2022
+
+- Adding the customer dashboard and integration with IAA
+
 #### 1.0.16 - 08.02.2022
 
 - Smartship offer deployed
