@@ -25,3 +25,14 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Run with SSL
+
+To run the project with SSL and for the project to be able to work with IAA :
+
+Run `ng serve --host keto.justpruvit.com --port 4200 --ssl`
+
+To create a cert you can do this:
+
+- in the project create dir "cert"
+- Run `openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout cert/key.key -out cert/crt.crt`

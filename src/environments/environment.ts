@@ -11,7 +11,7 @@ export const environment = {
   redirectURL: 'https://demo.justpruvit.com',
   clientID: 'pruvitdemoomicronclient',
   returningURL: 'https://account-demo.justpruvit.com/',
-  clientDomainURL: 'http://localhost:4200',
+  clientDomainURL: 'https://keto.justpruvit.com:4200',
   phraseBase: 'https://api.phraseapp.com/api/v2/projects/',
   phraseAppId: 'dec2efdab93d62d55da009cb683a438a',
   phraseAppToken:
