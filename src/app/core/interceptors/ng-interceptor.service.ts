@@ -23,8 +23,6 @@ export class NgInterceptorService implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     let requestToForward = req;
 
-    // const localUser = localStorage.getItem('MVUser');
-    // const user = localUser ? JSON.parse(localUser)
     if (req.url.includes(environment.phraseBase)) {
       return next.handle(requestToForward);
     }
@@ -32,17 +30,6 @@ export class NgInterceptorService implements HttpInterceptor {
       this.oidcSecurityService = this.injector.get(OidcSecurityService);
     }
 
-    // if (user !== null) {
-    //   let token = user.access_token;
-    //   if (token !== '') {
-    //     let tokenValue = 'Bearer ' + token;
-    //     requestToForward = req.clone({
-    //       setHeaders: { Authorization: tokenValue }
-    //     });
-    //   }
-    // } else {
-    //   console.debug('No auth header');
-    // }
     if (this.oidcSecurityService !== undefined) {
       let token = this.oidcSecurityService.getToken();
       if (token !== '') {

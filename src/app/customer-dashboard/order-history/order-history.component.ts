@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NewgenApiService } from 'src/app/shared/services/newgen-api.service';
+import { UserEmitterService } from 'src/app/shared/services/user-emitter.service';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-order-history',
   templateUrl: './order-history.component.html',
@@ -13,11 +15,17 @@ export class OrderHistoryComponent implements OnInit {
   public pendingPaymentOrders: Array<any> = [];
   public loadMoreLoading: boolean = false;
   public loadMoreButton: string = 'Older orders';
-  constructor(private newgenService: NewgenApiService) {}
+  constructor(
+    private newgenService: NewgenApiService,
+    private userEmitterService: UserEmitterService
+  ) {}
 
   ngOnInit(): void {
+    this.userEmitterService.getProfileObs().subscribe(x => {
+      this.user = x;
+      this.getCartPendingPayment(this.user.id);
+    });
     this.getOrderHistory(this.pageSize, this.startIndex);
-    // this.getPendingPaymentOrders();
   }
 
   getOrderHistory(pageSize: number, startIndex: number) {
@@ -75,10 +83,7 @@ export class OrderHistoryComponent implements OnInit {
   }
 
   pay(cartId: number) {
-    window.open(
-      'https://demo.justpruvit.com/#/checkout?cart_id=' + cartId,
-      '_blank'
-    );
+    window.open(environment.userURL + '#/checkout?cart_id=' + cartId, '_blank');
   }
 
   goToTracking(url: string) {
