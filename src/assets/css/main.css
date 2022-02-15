@@ -73,11 +73,11 @@ h1 {
 }
 
 h2 {
-  font-size: 58px;
+  font-size: 48px;
   font-family: acumin-pro, sans-serif;
   font-style: normal;
   font-weight: 700;
-  line-height: 52px;
+  line-height: 44px;
   letter-spacing: -0.05em;
 }
 
@@ -89,11 +89,11 @@ h2 {
 }
 
 h3 {
-  font-size: 36px;
+  font-size: 32px;
   font-family: acumin-pro, sans-serif;
   font-style: normal;
   font-weight: 700;
-  line-height: 36px;
+  line-height: 32px;
   letter-spacing: -0.05em;
 }
 
@@ -984,7 +984,7 @@ body.no-offer-bar .search-box-modal {
 .sk-main__title {
   max-width: 768px;
   margin: 0 auto;
-  margin-bottom: 40px;
+  margin-bottom: 64px;
 }
 
 @media only screen and (max-width: 767px) {
@@ -995,15 +995,12 @@ body.no-offer-bar .search-box-modal {
 
 .sk-main__title-b {
   margin-top: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin-bottom: 7px;
 }
 
 .sk-main__title-b .referr-img {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 100px;
   margin-right: 10px;
 }
@@ -6216,4 +6213,9 @@ button.sk-pruver__btn {
     font-size: 14px;
     height: 40px;
   }
+}
+
+.exclusive-card h4 {
+  position: relative;
+  z-index: 1;
 }
