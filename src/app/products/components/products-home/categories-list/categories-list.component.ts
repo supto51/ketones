@@ -104,6 +104,7 @@ export class CategoriesListComponent implements OnInit, OnDestroy {
     }
 
     const availableCategories: any[] = [];
+    console.log(categoriesData);
     if (categoriesData.length > 0) {
       categoriesData.forEach((categoryItem: any) => {
         const categoryInfo = this.productsUtilityService.getCategory(
@@ -126,7 +127,7 @@ export class CategoriesListComponent implements OnInit, OnDestroy {
           });
         }
 
-        if (categoryProducts.length > 0) {
+        if (categoryProducts.length > 0 || categoryItem.slug === 'food') {
           availableCategories.push(categoryItem);
         }
       });

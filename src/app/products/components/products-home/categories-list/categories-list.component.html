@@ -9,6 +9,9 @@
             class="sk-category__list-item"
             *ngFor="let category of categories"
           >
+            <span class="new-tag text-center" *ngIf="category.slug === 'food'"
+              >New</span
+            >
             <a
               (click)="onClickCategory(category.slug)"
               class="img-wrap rounded-circle text-center"
@@ -17,7 +20,7 @@
                 backgroundColor: category.bg_color
               }"
             >
-              <i *ngIf="category.name === 'Shop All'" class="fas fa-th"></i>
+              <i *ngIf="category.slug === 'shop-all'" class="fas fa-th"></i>
             </a>
 
             <h4 class="color-black text-center">{{ category.name }}</h4>
