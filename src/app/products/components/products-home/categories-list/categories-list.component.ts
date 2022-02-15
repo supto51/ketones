@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { SubscriptionLike } from 'rxjs';
 import { AppDataService } from 'src/app/shared/services/app-data.service';
@@ -22,6 +22,7 @@ export class CategoriesListComponent implements OnInit, OnDestroy {
   defaultLanguage = '';
   subscriptions: SubscriptionLike[] = [];
   isStaging: boolean;
+  shopAllSlug = 'shop-all';
 
   constructor(
     private dataService: AppDataService,
@@ -29,7 +30,8 @@ export class CategoriesListComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private translate: TranslateService,
     private productsDataService: ProductsDataService,
-    private productsUtilityService: ProductsUtilityService
+    private productsUtilityService: ProductsUtilityService,
+    private router: Router
   ) {
     this.isStaging = environment.isStaging;
   }
@@ -126,8 +128,12 @@ export class CategoriesListComponent implements OnInit, OnDestroy {
           });
         }
 
-        if (categoryProducts.length > 0) {
+        if (categoryProducts.length > 0 || categoryItem.slug === 'food') {
           availableCategories.push(categoryItem);
+        }
+
+        if (categoryItem.slug.includes('shop-all')) {
+          this.shopAllSlug = categoryItem.slug;
         }
       });
     }
@@ -137,15 +143,27 @@ export class CategoriesListComponent implements OnInit, OnDestroy {
 
   onClickCategory(categorySlug: string) {
     if (categorySlug) {
-      const routeURL = '/category/' + categorySlug;
-      this.utilityService.navigateToRoute(
-        routeURL,
-        this.selectedCountry,
-        this.selectedLanguage,
-        this.isStaging,
-        this.refCode,
-        this.defaultLanguage
-      );
+      if (categorySlug === 'food') {
+        if (this.selectedLanguage !== 'en') {
+          this.router.navigate(['/food'], {
+            queryParams: {
+              lang: this.selectedLanguage,
+            },
+          });
+        } else {
+          this.router.navigate(['/food']);
+        }
+      } else {
+        const routeURL = '/category/' + categorySlug;
+        this.utilityService.navigateToRoute(
+          routeURL,
+          this.selectedCountry,
+          this.selectedLanguage,
+          this.isStaging,
+          this.refCode,
+          this.defaultLanguage
+        );
+      }
     }
   }
 

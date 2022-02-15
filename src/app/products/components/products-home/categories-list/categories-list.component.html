@@ -2,14 +2,31 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h3 class="color-black">{{ 'categories' | translate }}</h3>
+        <h3 class="color-black">Shop by category</h3>
 
-        <ul class="sk-category__list d-flex">
-          <li class="sk-category__list-item"
-            *ngFor="let category of categories">
-            <a (click)="onClickCategory(category.slug)"
-              class="color-black border-0 sk-category__link sk-category__btn"
-              [innerHTML]="category.name"></a>
+        <ul class="sk-category__list shopBy-category d-flex">
+          <li
+            class="sk-category__list-item"
+            *ngFor="let category of categories"
+          >
+            <span class="new-tag text-center" *ngIf="category.slug === 'food'"
+              >New</span
+            >
+            <a
+              (click)="onClickCategory(category.slug)"
+              class="img-wrap rounded-circle text-center pointer"
+              [ngStyle]="{
+                backgroundImage: 'url(' + category.image + ')',
+                backgroundColor: category.bg_color
+              }"
+            >
+              <i
+                *ngIf="shopAllSlug?.includes(category.slug)"
+                class="fas fa-th"
+              ></i>
+            </a>
+
+            <h4 class="color-black text-center">{{ category.name }}</h4>
           </li>
         </ul>
       </div>

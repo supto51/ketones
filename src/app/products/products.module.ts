@@ -24,6 +24,7 @@ import { BrandBuilderComponent } from './components/promoter/brand-builder/brand
 import { SmartshipProductsComponent } from './components/smartship/smartship-products/smartship-products.component';
 import { SmartshipAboutComponent } from './components/smartship/smartship-about/smartship-about.component';
 import { ProductCardComponent } from './components/common/product-card/product-card.component';
+import { TrendingComponent } from './components/products-home/trending/trending.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { ProductCardComponent } from './components/common/product-card/product-c
     SmartshipProductsComponent,
     SmartshipAboutComponent,
     ProductCardComponent,
+    TrendingComponent,
   ],
   imports: [SharedModule, ClipboardModule, ProductsRoutingModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

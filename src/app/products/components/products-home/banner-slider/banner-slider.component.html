@@ -1,14 +1,25 @@
 <section class="sk-main__top">
   <div class="container sk-main__slider-container">
     <div class="sk-main__title text-center">
-      <h1 class="color-black">{{ "official-store" | translate }}</h1>
-
       <h4 class="color-black sk-main__title-b" *ngIf="isReferrerPresent">
-        {{ "brought-to-you-by" | translate }}
+        <img
+          [src]="
+            referrer?.imageUrl
+              ? referrer?.imageUrl
+              : 'assets/images/avatar2.png'
+          "
+          class="referr-img"
+          alt=""
+        />
+        Invited by
         <span class="color-brand link-hover" (click)="onClickReferrerName()">{{
           referrer?.name
         }}</span>
       </h4>
+
+      <h1 class="color-black">
+        {{ "Fuel and feed the best version of yourself." | translate }}
+      </h1>
 
       <button
         class="button button-primary btn-create-account buy-now"

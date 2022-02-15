@@ -1,0 +1,59 @@
+<section class="now-tranding">
+  <article class="container">
+    <figure class="row">
+      <div class="col-sm-12 sk-category__title">
+        <h3 class="color-black">Now trending</h3>
+      </div>
+      <div class="col-sm-12 col-md-6">
+        <div class="exclusive-card bg-green text-center">
+          <h2 class="title">Prüvit Food</h2>
+          <p class="subtitle">
+            Healthy, delicious, Prüvit approved meals made with farm-fresh
+            ingredients, ready in 5 minutes or less.
+          </p>
+
+          <a
+            class="button"
+            [routerLink]="['/food/select']"
+            [queryParams]="language !== 'en' ? { lang: language } : {}"
+            >Explore menu</a
+          >
+          <h4 class="text-center">
+            <a
+              [routerLink]="['/food']"
+              [queryParams]="language !== 'en' ? { lang: language } : {}"
+              ><i class="far fa-info-circle"></i> Learn more</a
+            >
+          </h4>
+          <img
+            class="img-fluid img food-img"
+            alt="Products"
+            src="assets/images/pruvit-food-card-img.png"
+          />
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6">
+        <div class="exclusive-card bg-dark text-center">
+          <h2 class="title">Core4 Challenge</h2>
+          <p class="subtitle">
+            A better you in 2022 in 4 simple steps, plus your chance to win
+            $10,000!
+          </p>
+
+          <a href="https://challenge.com/start/" class="button">Get started</a>
+
+          <h4 class="text-center">
+            <a href="https://challenge.com/core4/"
+              ><i class="far fa-info-circle"></i> Learn more</a
+            >
+          </h4>
+          <img
+            src="assets/images/core4-challenge-img.png"
+            alt="Products"
+            class="img-fluid img"
+          />
+        </div>
+      </div>
+    </figure>
+  </article>
+</section>

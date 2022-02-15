@@ -73,11 +73,11 @@ h1 {
 }
 
 h2 {
-  font-size: 58px;
+  font-size: 48px;
   font-family: acumin-pro, sans-serif;
   font-style: normal;
   font-weight: 700;
-  line-height: 52px;
+  line-height: 44px;
   letter-spacing: -0.05em;
 }
 
@@ -89,11 +89,11 @@ h2 {
 }
 
 h3 {
-  font-size: 36px;
+  font-size: 32px;
   font-family: acumin-pro, sans-serif;
   font-style: normal;
   font-weight: 700;
-  line-height: 36px;
+  line-height: 32px;
   letter-spacing: -0.05em;
 }
 
@@ -982,7 +982,9 @@ body.no-offer-bar .search-box-modal {
 }
 
 .sk-main__title {
-  margin-bottom: 40px;
+  max-width: 768px;
+  margin: 0 auto;
+  margin-bottom: 64px;
 }
 
 @media only screen and (max-width: 767px) {
@@ -993,6 +995,14 @@ body.no-offer-bar .search-box-modal {
 
 .sk-main__title-b {
   margin-top: 10px;
+  margin-bottom: 7px;
+}
+
+.sk-main__title-b .referr-img {
+  width: 36px;
+  height: 36px;
+  border-radius: 100px;
+  margin-right: 10px;
 }
 
 @media only screen and (max-width: 767px) {
@@ -6013,6 +6023,202 @@ button.sk-pruver__btn {
   margin-top: -6px;
 }
 
+.shopBy-category {
+  margin: 20px -15px 0;
+}
+
+.shopBy-category .sk-category__list-item {
+  margin: 0;
+  /* flex: 1 0 0%; */
+  padding: 0 15px;
+  position: relative;
+  text-align: center;
+}
+
+.shopBy-category .sk-category__list-item .img-wrap {
+  background-color: #c8c8c8;
+  display: inline-block;
+  margin-bottom: 10px;
+  overflow: hidden;
+  height: 170px;
+  width: 170px;
+  background-position: center center;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  transition: background-size 0.3s ease;
+  background-image: url(https://shopketo.com/assets/images/products.png);
+  color: #f5f5f5;
+}
+
+.shopBy-category .sk-category__list-item .img-wrap img {
+  object-fit: scale-down;
+  width: 170px;
+  height: 170px;
+}
+
+.shopBy-category .sk-category__list-item .img-wrap i {
+  font-size: 48px;
+  transform: translateY(-50%);
+  top: 50%;
+  position: relative;
+  color: #f5f5f5;
+}
+
+.shopBy-category .sk-category__list-item .img-wrap:hover {
+  background-size: 110% auto;
+  color: #fff;
+}
+
+.dark-theme .shopBy-category .sk-category__list-item .img-wrap {
+  background-color: #47474a;
+  color: #8e8e93;
+  cursor: pointer;
+}
+
+.dark-theme .shopBy-category .sk-category__list-item .img-wrap:hover {
+  color: #f9f9f9;
+}
+
+.shopBy-category .sk-category__list-item .new-tag {
+  position: absolute;
+  top: 0;
+  right: 15px;
+  padding: 4px 6px 2px;
+  width: 52px;
+  height: 26px;
+  background: #ff9000;
+  border-radius: 4px;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 18px;
+}
+
+@media only screen and (max-width: 767px) {
+  .shopBy-category {
+    overflow-x: initial;
+    white-space: unset;
+    flex-wrap: wrap;
+  }
+
+  .shopBy-category .sk-category__list-item {
+    flex: 0 0 auto;
+    width: 33.33333333%;
+    padding: 0 10px;
+    margin-bottom: 20px;
+  }
+
+  .shopBy-category .sk-category__list-item .img-wrap {
+    width: 95px;
+    height: 95px;
+    margin-bottom: 2px;
+  }
+
+  .shopBy-category .sk-category__list-item .new-tag {
+    width: 44px;
+    font-size: 12px;
+    height: 22px;
+    line-height: 14px;
+  }
+
+  .shopBy-category .sk-category__list-item .img-wrap i {
+    font-size: 32px;
+  }
+}
+
+.now-tranding {
+  margin-bottom: 50px;
+}
+
+.now-tranding .exclusive-card {
+  border-radius: 20px;
+  padding: 54px 45px;
+  color: #fff;
+  margin-bottom: 50px;
+  position: relative;
+  min-height: 640px;
+  overflow: hidden;
+}
+
+.now-tranding .exclusive-card.bg-green {
+  background: #1dbf6c;
+}
+
+.now-tranding .exclusive-card.bg-dark {
+  background: #131313 !important;
+}
+
+.now-tranding .exclusive-card .title {
+  margin-bottom: 15px;
+}
+
+.now-tranding .exclusive-card .img {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+/* .now-tranding .exclusive-card.bg-dark img {
+  max-width: 230px;
+} */
+
+.now-tranding .exclusive-card .food-img {
+  bottom: 70px;
+}
+
+.now-tranding .exclusive-card .button {
+  max-width: 160px;
+  height: 48px;
+  font-family: "acumin-pro";
+  text-transform: initial;
+  letter-spacing: -0.03em;
+  font-size: 18px;
+  line-height: 22px;
+  background: #fff;
+  color: #131313;
+  margin: 30px 0 20px;
+}
+
+.now-tranding .exclusive-card .button:hover {
+  background: #f2f2f7;
+  text-decoration: none;
+}
+
+.now-tranding .exclusive-card h4 a {
+  color: #fff;
+}
+
+.now-tranding .exclusive-card h4 a i {
+  margin-right: 8px;
+}
+
+.now-tranding .exclusive-card .subtitle {
+  opacity: 0.8;
+}
+
+@media only screen and (max-width: 767px) {
+  .now-tranding .exclusive-card {
+    padding: 34px 25px;
+    margin-bottom: 30px;
+    min-height: 460px;
+  }
+  .now-tranding .exclusive-card .title {
+    margin-bottom: 15px;
+  }
+  .now-tranding .exclusive-card .button {
+    margin: 15px 0;
+    font-size: 14px;
+    height: 40px;
+  }
+}
+
+.exclusive-card h4 {
+  position: relative;
+  z-index: 1;
+}
 .dashboard--container {
   margin-bottom: 60px;
 }
