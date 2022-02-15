@@ -163,7 +163,10 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ng-shopketo:build"
+            "browserTarget": "ng-shopketo:build",
+            "sslKey": "cert/key.key",
+            "sslCert": "cert/crt.crt",
+            "ssl": true
           },
           "configurations": {
             "production": {

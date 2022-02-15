@@ -20,7 +20,7 @@ export const environment = {
   foodCheckoutUrl: 'https://demo-opc.justpruvit.com/',
   iaaConfig: {
     stsServer: 'https://account-demo.justpruvit.com',
-    redirectUrl: 'http://keto.justpruvit.com:4200/implicit',
+    redirectUrl: 'https://keto.justpruvit.com:4200/implicit',
     // The Client MUST validate that the aud (audience) Claim contains its client_id value registered at the Issuer
     // identified by the iss (issuer) Claim as an audience.
     // The ID Token MUST be rejected if the ID Token does not list the Client as a valid audience,
@@ -28,10 +28,10 @@ export const environment = {
     clientId: 'pruvitdemoomicronimpclient',
     responseType: 'id_token token',
     scope: 'openid newgen email phone profile',
-    postLogoutRedirectUri: 'http://keto.justpruvit.com:4200',
-    startCheckSession: false,
+    postLogoutRedirectUri: 'https://keto.justpruvit.com:4200',
+    startCheckSession: true,
     silentRenew: true,
-    silentRenewUrl: 'http://keto.justpruvit.com:4200/silent-renew.html',
+    silentRenewUrl: 'https://keto.justpruvit.com:4200/silent.html',
     postLoginRoute: '',
     // HTTP 403
     forbiddenRoute: '/unauthorized',
