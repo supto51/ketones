@@ -11,7 +11,7 @@ export const environment = {
   redirectURL: 'https://demo.justpruvit.com',
   clientID: 'pruvitdemoomicronclient',
   returningURL: 'https://account-demo.justpruvit.com/',
-  clientDomainURL: 'https://keto.justpruvit.com:4200',
+  clientDomainURL: 'https://localhost:4200',
   phraseBase: 'https://api.phraseapp.com/api/v2/projects/',
   phraseAppId: 'dec2efdab93d62d55da009cb683a438a',
   phraseAppToken:
@@ -20,19 +20,20 @@ export const environment = {
   foodCheckoutUrl: 'https://demo-opc.justpruvit.com/',
   iaaConfig: {
     stsServer: 'https://account-demo.justpruvit.com',
-    redirectUrl: 'https://keto.justpruvit.com:4200/implicit',
+    redirectUrl: 'https://localhost:4200/implicit',
     // The Client MUST validate that the aud (audience) Claim contains its client_id value registered at the Issuer
     // identified by the iss (issuer) Claim as an audience.
     // The ID Token MUST be rejected if the ID Token does not list the Client as a valid audience,
     // or if it contains additional audiences not trusted by the Client.
     clientId: 'pruvitdemoomicronimpclient',
-    responseType: 'id_token token',
-    scope: 'openid newgen email phone profile',
-    postLogoutRedirectUri: 'https://keto.justpruvit.com:4200',
-    startCheckSession: true,
+    responseType: 'code',
+    scope: 'openid newgen email phone profile offline_access',
+    postLogoutRedirectUri: 'https://localhost:4200',
+    startCheckSession: false,
     silentRenew: true,
-    silentRenewUrl: 'https://keto.justpruvit.com:4200/silent.html',
+    silentRenewUrl: 'https://localhost:4200/silent.html',
     postLoginRoute: '',
+    client_secret: 'demosecret',
     // HTTP 403
     forbiddenRoute: '/unauthorized',
     // HTTP 401

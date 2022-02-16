@@ -91,6 +91,12 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
       // The ID Token MUST be rejected if the ID Token does not list the Client as a valid audience,
       // or if it contains additional audiences not trusted by the Client.
       clientId: environment.iaaConfig.clientId,
+      customTokenParams: {
+        client_secret: environment.iaaConfig.client_secret
+      },
+      customParamsRefreshToken: {
+        client_secret: environment.iaaConfig.client_secret
+      },
       responseType: environment.iaaConfig.responseType,
       scope: environment.iaaConfig.scope,
       postLogoutRedirectUri: environment.iaaConfig.postLogoutRedirectUri,
@@ -100,6 +106,7 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
       postLoginRoute: environment.iaaConfig.postLoginRoute,
       // HTTP 403
       forbiddenRoute: environment.iaaConfig.forbiddenRoute,
+      useRefreshToken: true,
       // HTTP 401
       unauthorizedRoute: environment.iaaConfig.unauthorizedRoute,
       // log_console_warning_active: true,
