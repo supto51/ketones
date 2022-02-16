@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { SubscriptionLike } from 'rxjs';
-import { findIndex } from 'rxjs/operators';
 import { AppDataService } from 'src/app/shared/services/app-data.service';
 import { AppUtilityService } from 'src/app/shared/services/app-utility.service';
 import { environment } from 'src/environments/environment';
@@ -132,12 +131,9 @@ export class CategoriesListComponent implements OnInit, OnDestroy {
         if (categoryProducts.length > 0 || categoryItem.slug === 'food') {
           availableCategories.push(categoryItem);
 
-          availableCategories.sort((a, b) => {
-            if (+a.meta.order[0] < +b.meta.order[0]) {
-              return -1;
-            }
-            return 1;
-          });
+          availableCategories.sort(
+            (a, b) => +a.meta.order[0] - +b.meta.order[0]
+          );
         }
 
         if (categoryItem.slug.includes('shop-all')) {
