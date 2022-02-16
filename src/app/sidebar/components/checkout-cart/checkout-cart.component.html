@@ -582,7 +582,8 @@
       />
 
       <p class="p-small">
-        {{ "shipping-time-explanation" | translate }}
+        {{ "shipping-note-supplements" | translate }}
+        {{ selectedCountry === "US" ? ("shipping-note-food" | translate) : "" }}
       </p>
 
       <a
