@@ -964,3 +964,19 @@ body.dark-theme,
   .dropdown-item:hover {
   color: #2152ff;
 }
+
+.dark-theme .shopBy-category .sk-category__list-item .img-wrap {
+  background-color: #47474a;
+  color: #8e8e93;
+  cursor: pointer;
+}
+
+.dark-theme .your-daily-guide-wrap h2,
+.dark-theme .your-daily-guide-wrap h4,
+.dark-theme .your-daily-guide-wrap p {
+  color: #212529;
+}
+
+.dark-theme .your-daily-guide-wrap .ch-brand-gray {
+  color: #919192;
+}
