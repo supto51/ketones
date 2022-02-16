@@ -22,13 +22,14 @@ export const environment = {
     // The ID Token MUST be rejected if the ID Token does not list the Client as a valid audience,
     // or if it contains additional audiences not trusted by the Client.
     clientId: 'pruvitdemoomicronimpclient',
-    responseType: 'id_token token',
-    scope: 'openid newgen email phone profile',
+    responseType: 'code',
+    scope: 'openid newgen email phone profile offline_access',
     postLogoutRedirectUri: 'https://shopketo-demo.azurewebsites.net',
     startCheckSession: false,
     silentRenew: true,
     silentRenewUrl: 'https://shopketo-demo.azurewebsites.net/silent.html',
     postLoginRoute: '',
+    client_secret: 'demosecret',
     // HTTP 403
     forbiddenRoute: '/unauthorized',
     // HTTP 401

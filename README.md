@@ -30,7 +30,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 To run the project with SSL and for the project to be able to work with IAA :
 
-Run `ng serve --host keto.justpruvit.com --port 4200 --ssl`
+Run `ng serve --port 4200 --ssl`
 
 To create a cert you can do this:
 
