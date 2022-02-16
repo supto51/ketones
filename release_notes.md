@@ -1,3 +1,7 @@
+#### 1.0.18 - 16.02.2022
+
+- Changing authentication flow
+
 #### 1.0.17 - 15.02.2022
 
 - Adding the customer dashboard and integration with IAA
