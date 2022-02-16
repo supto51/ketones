@@ -106,6 +106,7 @@ export class CategoriesListComponent implements OnInit, OnDestroy {
     }
 
     const availableCategories: any[] = [];
+
     if (categoriesData.length > 0) {
       categoriesData.forEach((categoryItem: any) => {
         const categoryInfo = this.productsUtilityService.getCategory(
@@ -130,10 +131,6 @@ export class CategoriesListComponent implements OnInit, OnDestroy {
 
         if (categoryProducts.length > 0 || categoryItem.slug === 'food') {
           availableCategories.push(categoryItem);
-
-          availableCategories.sort(
-            (a, b) => +a.meta.order[0] - +b.meta.order[0]
-          );
         }
 
         if (categoryItem.slug.includes('shop-all')) {
@@ -141,6 +138,8 @@ export class CategoriesListComponent implements OnInit, OnDestroy {
         }
       });
     }
+
+    availableCategories.sort((a, b) => +a?.meta?.order[0] - +b?.meta?.order[0]);
 
     this.categories = availableCategories;
   }
